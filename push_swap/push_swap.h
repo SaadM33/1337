@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 22:29:20 by sel-maaq          #+#    #+#             */
-/*   Updated: 2024/12/25 09:57:29 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2024/12/27 22:54:10 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,8 @@ void    ss(t_stack **stack_a, t_stack **stack_b);
 void    revrot_a(t_stack **stack_a);
 void    revrot_b(t_stack **stack_b);
 void    rrr(t_stack **stack_a, t_stack **stack_b);
+
+int		is_sorted(t_stack *stack_a);
+void 	sort(t_stack *stack_a, t_stack *stack_b);
 
 #endif

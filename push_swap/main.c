@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 21:48:21 by sel-maaq          #+#    #+#             */
-/*   Updated: 2024/12/25 21:19:01 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2024/12/27 23:43:23 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,20 @@
 int main(int argc, char **argv)
 {
 	t_stack *stack_a;
-	t_stack *stack_b;
+	// t_stack *stack_b;
 
 	stack_a = NULL;
 	if (argc >= 2)
 	{
 		handle_input(argv, argc, &stack_a);
-		sort();
+		// if (is_sorted(stack_a) == 0)
+		// 	sort(stack_a, stack_b);
+		t_stack *temp = stack_a;
+		while (temp)
+		{
+			printf("%d\n", temp->value);
+			temp = temp->next;
+		}
 	}
 	free_stack(&stack_a);
 	return (0);
@@ -32,18 +39,23 @@ void handle_input(char **av, int ac, t_stack **stack_a)
 	int i;
 	char **args;
 
-	i = 0;
-	if (ac == 2)
-		args = ft_split(av[1], ' ');
-	else
-		args = &av[1];
-	while (args[i])
+	i = 1;
+	// if (ac == 2)
+	// 	args = ft_split(av[1], ' ');
+	// else
+	// 	args = &av[1];
+	while (av[i])
 	{
-		if (!is_valid_number(args[i]))
-			handle_error(stack_a, args, ac);
-		else if (!check_duplicate(*stack_a, ft_atol(args[i])))
-			handle_error(stack_a, args, ac);
-		add_to_stack(stack_a, ft_atol(args[i]), args, ac);
+		args = ft_split(av[i], ' ');
+// 		if (!is_valid_number(args[i]))
+// 			handle_error(stack_a, args, ac);
+// 		else if (!check_duplicate(*stack_a, ft_atol(args[i])))
+// 			handle_error(stack_a, args, ac);
+        int j = 0;
+        while (args[j])
+	        {add_to_stack(stack_a, ft_atol(args[j]), args, ac);
+	        j++;
+	        }
 		i++;
 	}
 	if (ac == 2)

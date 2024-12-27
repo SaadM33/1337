@@ -22,4 +22,9 @@ int is_sorted(t_stack *stack_a)
 	return (1);
 }
 
+void sort(t_stack *stack_a, t_stack *stack_b)
+{
+	
+}
+
 
