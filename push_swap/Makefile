@@ -2,7 +2,7 @@ NAME = push_swap
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
-SRCS = main.c
+SRCS = main.c utils.c 
 OBJS = $(SRCS:.c=.o)
 
 LIBFT_PATH = ./libft
