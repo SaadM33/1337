@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/24 22:29:20 by sel-maaq          #+#    #+#             */
-/*   Updated: 2024/12/27 22:54:10 by sel-maaq         ###   ########.fr       */
+/*   Created: 2024/12/28 19:16:24 by sel-maaq          #+#    #+#             */
+/*   Updated: 2024/12/28 19:16:24 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
@@ -52,5 +53,6 @@ void    rrr(t_stack **stack_a, t_stack **stack_b);
 
 int		is_sorted(t_stack *stack_a);
 void 	sort(t_stack *stack_a, t_stack *stack_b);
-
+int		ft_stacksize(t_stack *lst);
+void	do_op(char *op, t_stack **stack_a, t_stack **stack_b);
 #endif

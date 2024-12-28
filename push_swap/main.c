@@ -11,18 +11,20 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+#include <stdio.h>
 int main(int argc, char **argv)
 {
 	t_stack *stack_a;
-	t_stack *stack_b;
+	// t_stack *stack_b;
 
 	stack_a = NULL;
 	if (argc >= 2)
 	{
 		handle_input(argv, &stack_a);
-		if (is_sorted(stack_a) == 0)
-			sort(stack_a, stack_b);
+		// if (  is_sorted(stack_a)   )
+			// sort(stack_a, stack_b);
+		// else
+			// ft_putchar_fd('$', 1);
 		t_stack *temp = stack_a;
 		while (temp)
 		{
