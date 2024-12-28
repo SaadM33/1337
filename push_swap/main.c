@@ -15,14 +15,14 @@
 int main(int argc, char **argv)
 {
 	t_stack *stack_a;
-	// t_stack *stack_b;
+	t_stack *stack_b;
 
 	stack_a = NULL;
 	if (argc >= 2)
 	{
-		handle_input(argv, argc, &stack_a);
-		// if (is_sorted(stack_a) == 0)
-		// 	sort(stack_a, stack_b);
+		handle_input(argv, &stack_a);
+		if (is_sorted(stack_a) == 0)
+			sort(stack_a, stack_b);
 		t_stack *temp = stack_a;
 		while (temp)
 		{
@@ -34,42 +34,39 @@ int main(int argc, char **argv)
 	return (0);
 }
 
-void handle_input(char **av, int ac, t_stack **stack_a)
+void handle_input(char **av, t_stack **stack_a)
 {
 	int i;
+	int	j;
 	char **args;
 
 	i = 1;
-	// if (ac == 2)
-	// 	args = ft_split(av[1], ' ');
-	// else
-	// 	args = &av[1];
 	while (av[i])
 	{
 		args = ft_split(av[i], ' ');
-// 		if (!is_valid_number(args[i]))
-// 			handle_error(stack_a, args, ac);
-// 		else if (!check_duplicate(*stack_a, ft_atol(args[i])))
-// 			handle_error(stack_a, args, ac);
-        int j = 0;
+        j = 0;
         while (args[j])
-	        {add_to_stack(stack_a, ft_atol(args[j]), args, ac);
+	    {
+			if (!is_valid_number(args[j]))
+				handle_error(stack_a, args);
+			if (!check_duplicate(*stack_a, ft_atol(args[j])))
+				handle_error(stack_a, args);
+			add_to_stack(stack_a, ft_atol(args[j]), args);
 	        j++;
-	        }
+	    }
+		free_split(args);
 		i++;
 	}
-	if (ac == 2)
-		free_split(args);
 }
 
-void add_to_stack(t_stack **stack, int value, char **args, int ac)
+void add_to_stack(t_stack **stack, int value, char **args)
 {
 	t_stack *new_node;
 	t_stack *temp;
 
 	new_node = malloc(sizeof(t_stack));
 	if (!new_node)
-		handle_error(stack, args, ac);
+		handle_error(stack, args);
 	new_node->value = value;
 	new_node->next = NULL;
 	if (*stack == NULL)
@@ -83,11 +80,10 @@ void add_to_stack(t_stack **stack, int value, char **args, int ac)
 	}
 }
 
-void handle_error(t_stack **stack_a, char **args, int ac)
+void handle_error(t_stack **stack_a, char **args)
 {
 	free_stack(stack_a);
-	if (ac == 2)
-		free_split(args);
+	free_split(args);
 	write(2, "Error\n", 6);
 	exit(EXIT_FAILURE);
 }

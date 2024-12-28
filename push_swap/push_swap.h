@@ -26,11 +26,10 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
-void	handle_input(char **av, int ac, t_stack **stack_a);
+void	handle_input(char **av, t_stack **stack_a);
 int		is_valid_number(char *str);
-void	add_to_stack(t_stack **stack, int value, char **args, int ac);
-void 	handle_error(t_stack **stack_a, char **args, int ac);
-void 	add_to_stack(t_stack **stack, int value, char **args, int ac);
+void	add_to_stack(t_stack **stack, int value, char **args);
+void 	handle_error(t_stack **stack_a, char **args);
 void	free_split(char **args);
 void 	free_stack(t_stack **stack);
 long	ft_atol(const char *str);
