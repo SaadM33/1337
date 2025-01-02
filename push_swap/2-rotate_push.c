@@ -14,14 +14,30 @@
 
 void    push_a(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack *temp;
+	 t_stack *temp;
 
-	if (!stack_b || !(*stack_b))
-		return; 
-	temp = *stack_b;
-	*stack_b = temp->next;
-	temp->next = *stack_a;
-	*stack_a = *stack_b;
+    // Check for NULL pointers
+    if (!stack_a || !stack_b || !(*stack_b))
+        return;
+
+    // Store the node we're moving
+    temp = *stack_b;
+    
+    // Update stack_b first
+    *stack_b = (*stack_b)->next;
+    
+    // Now safely link temp to stack_a
+    if (!*stack_a)
+    {
+        temp->next = NULL;  // Important when stack_a is empty
+    }
+    else
+    {
+        temp->next = *stack_a;
+    }
+    
+    // Finally update stack_a
+    *stack_a = temp;
 }
 
 void    push_b(t_stack **stack_a, t_stack **stack_b)
@@ -33,7 +49,7 @@ void    push_b(t_stack **stack_a, t_stack **stack_b)
 	temp = *stack_a;
 	*stack_a = temp->next;
 	temp->next = *stack_b;
-	*stack_a = *stack_a;
+	*stack_b = temp;
 }
 
 void    rot_a(t_stack **stack_a)

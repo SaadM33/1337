@@ -23,8 +23,10 @@
 
 typedef struct s_stack
 {
-	int				value;
-	struct s_stack	*next;
+
+	int		value;
+	t_stack	*next;
+	
 }	t_stack;
 
 void	handle_input(char **av, t_stack **stack_a);
@@ -53,6 +55,8 @@ void    rrr(t_stack **stack_a, t_stack **stack_b);
 
 int		is_sorted(t_stack *stack_a);
 void 	sort(t_stack *stack_a, t_stack *stack_b);
-int		ft_stacksize(t_stack *lst);
+int		get_stack_size(t_stack *lst);
 void	do_op(char *op, t_stack **stack_a, t_stack **stack_b);
+void	tiny_sort(t_stack **stack_a, t_stack **stack_b);
+
 #endif

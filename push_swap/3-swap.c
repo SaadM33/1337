@@ -20,7 +20,7 @@ void	swap_a(t_stack **stack_a)
 	if (!stack_a || !(*stack_a) || !(*stack_a)->next)
 		return;
 	head = *stack_a;
-	next = *stack_a;
+	next = (*stack_a)->next;
 	*stack_a = next;
 	head->next = next->next;
 	next->next = head;

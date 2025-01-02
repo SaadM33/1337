@@ -15,17 +15,23 @@
 int main(int argc, char **argv)
 {
 	t_stack *stack_a;
-	// t_stack *stack_b;
+	t_stack *stack_b;
 
 	stack_a = NULL;
 	if (argc >= 2)
 	{
 		handle_input(argv, &stack_a);
-		// if (  is_sorted(stack_a)   )
-			// sort(stack_a, stack_b);
-		// else
-			// ft_putchar_fd('$', 1);
+		if (!is_sorted(stack_a))
+		{
+			if (get_stack_size(stack_a) == 2)
+				do_op("sa", &stack_a, &stack_b);
+			else if (get_stack_size(stack_a) == 3)
+				tiny_sort(&stack_a, &stack_b);
+			else if (get_stack_size(stack_a) > 3)
+				sort(&stack_a, &stack_b);
+		}
 		t_stack *temp = stack_a;
+		printf("\n\n");
 		while (temp)
 		{
 			printf("%d\n", temp->value);
@@ -89,3 +95,4 @@ void handle_error(t_stack **stack_a, char **args)
 	write(2, "Error\n", 6);
 	exit(EXIT_FAILURE);
 }
+
