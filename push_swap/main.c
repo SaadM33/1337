@@ -12,6 +12,7 @@
 
 #include "push_swap.h"
 #include <stdio.h>
+
 int main(int argc, char **argv)
 {
 	t_stack *stack_a;
@@ -28,7 +29,7 @@ int main(int argc, char **argv)
 			else if (get_stack_size(stack_a) == 3)
 				tiny_sort(&stack_a, &stack_b);
 			else if (get_stack_size(stack_a) > 3)
-				sort(&stack_a, &stack_b);
+				sort_turk(&stack_a, &stack_b);
 		}
 		t_stack *temp = stack_a;
 		printf("\n\n");

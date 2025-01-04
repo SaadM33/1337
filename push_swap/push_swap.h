@@ -23,10 +23,10 @@
 
 typedef struct s_stack
 {
-
 	int		value;
-	t_stack	*next;
-	
+	int		cost;
+	struct s_stack	*target;
+	struct s_stack	*next;
 }	t_stack;
 
 void	handle_input(char **av, t_stack **stack_a);
@@ -54,9 +54,18 @@ void    revrot_b(t_stack **stack_b);
 void    rrr(t_stack **stack_a, t_stack **stack_b);
 
 int		is_sorted(t_stack *stack_a);
-void 	sort(t_stack *stack_a, t_stack *stack_b);
+void 	sort_turk(t_stack **stack_a, t_stack **stack_b);
 int		get_stack_size(t_stack *lst);
 void	do_op(char *op, t_stack **stack_a, t_stack **stack_b);
 void	tiny_sort(t_stack **stack_a, t_stack **stack_b);
 
+void	push_all_save_three(t_stack **a, t_stack **b);
+t_stack	*find_smallest(t_stack *a);
+void	calculate_cost(t_stack *stack, t_stack *node);
+void	fill_costs(t_stack *a, t_stack *b);
+void	find_targets(t_stack *a, t_stack *b);
+void	shift_stack(t_stack **a);
+void	move_cheapest(t_stack **a, t_stack **b);
+t_stack	*find_cheapest_move(t_stack *b, int *min_cost, t_stack **cheapest_b, t_stack **cheapest_a);
+void	execute_move(t_stack **a, t_stack **b, t_stack *cheapest_b, t_stack *cheapest_a);
 #endif

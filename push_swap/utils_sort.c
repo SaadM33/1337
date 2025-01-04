@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 14:33:48 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/01/01 15:23:31 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/01/04 00:09:11 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,16 @@ int	is_sorted(t_stack *stack_a)
 	}
 	return (1);
 }
+
+void shift_stack(t_stack **a)
+{
+    if (!is_sorted(*a)) {
+        while (!is_sorted(*a)) {
+            rotate_stack(a, NULL, "ra");
+        }
+    }
+}
+
 
 void	do_op(char *op, t_stack **stack_a, t_stack **stack_b)
 {

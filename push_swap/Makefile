@@ -2,7 +2,7 @@ NAME = push_swap
 CC = gcc
 CFLAGS = -g -Wall -Werror -Wextra
 
-SRCS = 1-rev_rotate.c  2-rotate_push.c  3-swap.c  main.c  sort_algo.c  utils.c  utils_sort.c
+SRCS = 1-rev_rotate.c  2-rotate_push.c  3-swap.c  main.c  sort_algo.c  utils_input.c  utils_sort2.c  utils_sort.c
 OBJS = $(SRCS:.c=.o)
 
 LIBFT_PATH = ./libft

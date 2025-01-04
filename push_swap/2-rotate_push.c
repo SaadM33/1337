@@ -12,32 +12,24 @@
 
 #include "push_swap.h"
 
-void    push_a(t_stack **stack_a, t_stack **stack_b)
+void	push_a(t_stack **stack_a, t_stack **stack_b)
 {
 	 t_stack *temp;
 
-    // Check for NULL pointers
-    if (!stack_a || !stack_b || !(*stack_b))
-        return;
+	if (!stack_a || !stack_b || !(*stack_b))
+		return;
 
-    // Store the node we're moving
-    temp = *stack_b;
-    
-    // Update stack_b first
-    *stack_b = (*stack_b)->next;
-    
-    // Now safely link temp to stack_a
-    if (!*stack_a)
-    {
-        temp->next = NULL;  // Important when stack_a is empty
-    }
-    else
-    {
-        temp->next = *stack_a;
-    }
-    
-    // Finally update stack_a
-    *stack_a = temp;
+	temp = *stack_b;
+	*stack_b = (*stack_b)->next;
+	if (!*stack_a)
+	{
+		temp->next = NULL;
+	}
+	else
+	{
+		temp->next = *stack_a;
+	}
+	*stack_a = temp;
 }
 
 void    push_b(t_stack **stack_a, t_stack **stack_b)
