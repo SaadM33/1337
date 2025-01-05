@@ -34,7 +34,7 @@ void	swap_b(t_stack **stack_b)
 	if (!stack_b || !(*stack_b) || !(*stack_b)->next)
 		return;
 	head = *stack_b;
-	next = *stack_b;
+	next = (*stack_b)->next;
 	*stack_b = next;
 	head->next = next->next;
 	next->next = head;

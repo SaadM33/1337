@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/28 19:16:24 by sel-maaq          #+#    #+#             */
-/*   Updated: 2024/12/28 19:16:24 by sel-maaq         ###   ########.fr       */
+/*   Created: 2025/01/04 22:14:35 by sel-maaq          #+#    #+#             */
+/*   Updated: 2025/01/04 22:14:35 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include <stddef.h>
 # include <limits.h>
-
+#include <stdio.h>
 # include "libft/libft.h"
 
 typedef struct s_stack
@@ -37,21 +37,19 @@ void	free_split(char **args);
 void 	free_stack(t_stack **stack);
 long	ft_atol(const char *str);
 int 	check_duplicate(t_stack *stack, int value);
+int		ft_abs(int n);
 
-void    push_a(t_stack **stack_a, t_stack **stack_b);
-void    push_b(t_stack **stack_a, t_stack **stack_b);
-
-void    rot_a(t_stack **stack_a);
-void    rot_b(t_stack **stack_b);
-void    rr(t_stack **stack_a, t_stack **stack_b);
-
-void    swap_a(t_stack **stack_a);
-void    swap_b(t_stack **stack_b);
-void    ss(t_stack **stack_a, t_stack **stack_b);
-
-void    revrot_a(t_stack **stack_a);
-void    revrot_b(t_stack **stack_b);
-void    rrr(t_stack **stack_a, t_stack **stack_b);
+void	push_a(t_stack **stack_a, t_stack **stack_b);
+void	push_b(t_stack **stack_a, t_stack **stack_b);
+void	rot_a(t_stack **stack_a);
+void	rot_b(t_stack **stack_b);
+void	rr(t_stack **stack_a, t_stack **stack_b);
+void	swap_a(t_stack **stack_a);
+void	swap_b(t_stack **stack_b);
+void	ss(t_stack **stack_a, t_stack **stack_b);
+void	revrot_a(t_stack **stack_a);
+void	revrot_b(t_stack **stack_b);
+void	rrr(t_stack **stack_a, t_stack **stack_b);
 
 int		is_sorted(t_stack *stack_a);
 void 	sort_turk(t_stack **stack_a, t_stack **stack_b);
@@ -64,8 +62,7 @@ t_stack	*find_smallest(t_stack *a);
 void	calculate_cost(t_stack *stack, t_stack *node);
 void	fill_costs(t_stack *a, t_stack *b);
 void	find_targets(t_stack *a, t_stack *b);
-void	shift_stack(t_stack **a);
+void	shift_stack(t_stack **a, t_stack **b);
 void	move_cheapest(t_stack **a, t_stack **b);
-t_stack	*find_cheapest_move(t_stack *b, int *min_cost, t_stack **cheapest_b, t_stack **cheapest_a);
-void	execute_move(t_stack **a, t_stack **b, t_stack *cheapest_b, t_stack *cheapest_a);
+t_stack *find_cheapest_move(t_stack *b);
 #endif

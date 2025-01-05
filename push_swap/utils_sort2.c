@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_sort2.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/04 22:13:57 by sel-maaq          #+#    #+#             */
+/*   Updated: 2025/01/06 00:00:49 by sel-maaq         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
@@ -38,74 +49,37 @@ void calculate_cost(t_stack *stack, t_stack *node)
 		position++;
 		stack = stack->next;
 	}
-	if (position > size / 2)
-        node->cost = size - position;
+	if (position >= size / 2)
+        node->cost = position - size;
     else
 		node->cost = position; 
 }
 
-t_stack	*find_cheapest_move(t_stack *b, int *min_cost,
-		t_stack **cheapest_b, t_stack **cheapest_a)
+t_stack	*find_cheapest_move(t_stack *b)
 {
 	t_stack	*cur_b;
+	t_stack	*cheapest;
+	int		total_cost;
+	int		min_cost;
 
 	cur_b = b;
+	min_cost = INT_MAX;
 	while (cur_b)
 	{
-		t_stack	*cur_a = cur_b->target;
-		
-		if (cur_a)
+		total_cost = ft_abs(cur_b->cost) + ft_abs(cur_b->target->cost);
+		if (total_cost < min_cost)
 		{
-			int total_cost;
-
-			total_cost = cur_a->cost + cur_b->cost;
-			if (total_cost < *min_cost)
-			{
-				*min_cost = total_cost;
-				*cheapest_b = cur_b;
-				*cheapest_a = cur_a;
-			}
+			min_cost = total_cost;
+			cheapest = cur_b;
 		}
 		cur_b = cur_b->next;
 	}
-	return (*cheapest_b);
+	return (cheapest);
 }
 
-void	execute_move(t_stack **a, t_stack **b, t_stack *cheapest_b,
-		t_stack *cheapest_a)
+int	ft_abs(int n)
 {
-	int rr_moves;
-
-	if (cheapest_b->cost < cheapest_a->cost)
-		rr_moves = cheapest_b->cost;
-	else
-		rr_moves = cheapest_a->cost;
-
-	for (int i = 0; i < rr_moves; i++)
-		do_op("rr", a, b);
-
-	cheapest_b->cost -= rr_moves;
-	cheapest_a->cost -= rr_moves;
-
-	while (cheapest_b->cost > 0)
-	{
-		do_op("rb", a, b);
-		cheapest_b->cost--;
-	}
-	while (cheapest_a->cost > 0)
-	{
-		do_op("ra", a, b);
-		cheapest_a->cost--;
-	}
-	while (cheapest_b->cost < 0)
-	{
-		do_op("rrb", a, b);
-		cheapest_b->cost++;
-	}
-	while (cheapest_a->cost < 0)
-	{
-		do_op("rra", a, b);
-		cheapest_a->cost++;
-	}
-	push_node_to_stack_a(a, b, cheapest_b);
+	if (n < 0)
+		n = -n;
+	return (n);
 }

@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_algo.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/04 22:13:50 by sel-maaq          #+#    #+#             */
+/*   Updated: 2025/01/04 22:13:50 by sel-maaq         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
@@ -13,32 +23,27 @@ void	sort_turk(t_stack **a, t_stack **b)
 		move_cheapest(a, b);
 	}
 	if (!is_sorted(*a))
-		shift_stack(a);
+		shift_stack(a, b);
 }
 
 void	tiny_sort(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack	*tmp;
-	int		biggest;
-	int		value;
+	t_stack	*top;
+	t_stack	*mid;
+	t_stack	*bot;
 
-	tmp = *stack_a;
-	value = tmp->value;
-	while (tmp)
-	{
-		if (value <= tmp->value)
-			value = tmp->value;
-		tmp = tmp->next;
-	}
-	biggest = value;
-	if ((*stack_a)->value == biggest)
+	if (!*stack_a || !(*stack_a)->next || !(*stack_a)->next->next)
+		return ;
+	top = *stack_a;
+	mid = top->next;
+	bot = mid->next;
+	if (top->value > mid->value && top->value > bot->value)
 		do_op("ra", stack_a, stack_b);
-	else if ((*stack_a)->next->value == biggest)
+	else if (mid->value > top->value && mid->value > bot->value)
 		do_op("rra", stack_a, stack_b);
 	if ((*stack_a)->value > (*stack_a)->next->value)
 		do_op("sa", stack_a, stack_b);
 }
-
 
 void	find_targets(t_stack *a, t_stack *b)
 {
@@ -52,7 +57,8 @@ void	find_targets(t_stack *a, t_stack *b)
 		b->target = NULL;
 		while (current_a)
 		{
-			if (b->value < current_a->value && current_a->value < closest_max)
+			if (b->value < current_a->value &&
+				current_a->value < closest_max)
 			{
 				b->target = current_a;
                 closest_max = current_a->value;
@@ -89,16 +95,30 @@ void fill_costs(t_stack *a, t_stack *b)
 
 void	move_cheapest(t_stack **a, t_stack **b)
 {
-	int		min_cost;
-	t_stack	*cheapest_b;
-	t_stack	*cheapest_a;
+	t_stack *cheapest;
+	int		cost_a;
+	int		cost_b;
 
-	min_cost = INT_MAX;
-	cheapest_b = NULL;
-	cheapest_a = NULL;
-	find_cheapest_move(*b, &min_cost, &cheapest_b, &cheapest_a);
-	if (cheapest_b && cheapest_a)
-		execute_move(a, b, cheapest_b, cheapest_a);
+	cheapest = find_cheapest_move(*b);
+	cost_b = cheapest->cost;
+	cost_a = cheapest->target->cost;
+	while (cost_a > 0 && cost_b > 0)
+    {
+        do_op("rr", a, b);
+        cost_a--;
+        cost_b--;
+    }
+	while (cost_a < 0 && cost_b < 0)
+    {
+        do_op("rrr", a, b);
+        cost_a++;
+        cost_b++;
+    }
+	while (cost_a > 0) { do_op("ra", a, b); cost_a--; }
+    while (cost_a < 0) { do_op("rra", a, b); cost_a++; }
+    while (cost_b > 0) { do_op("rb", a, b); cost_b--; }
+    while (cost_b < 0) { do_op("rrb", a, b); cost_b++; }
+	do_op("pa", a, b);
 }
 
 

@@ -19,6 +19,7 @@ int main(int argc, char **argv)
 	t_stack *stack_b;
 
 	stack_a = NULL;
+	stack_b = NULL;
 	if (argc >= 2)
 	{
 		handle_input(argv, &stack_a);
@@ -32,7 +33,7 @@ int main(int argc, char **argv)
 				sort_turk(&stack_a, &stack_b);
 		}
 		t_stack *temp = stack_a;
-		printf("\n\n");
+		printf("\n");
 		while (temp)
 		{
 			printf("%d\n", temp->value);
