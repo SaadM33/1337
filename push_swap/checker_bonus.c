@@ -1,74 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_sort.c                                       :+:      :+:    :+:   */
+/*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/31 14:33:48 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/01/06 18:54:40 by sel-maaq         ###   ########.fr       */
+/*   Created: 2025/01/06 18:25:58 by sel-maaq          #+#    #+#             */
+/*   Updated: 2025/01/06 21:09:21 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "get_next_line.h"
 #include "push_swap.h"
 
-int	is_sorted(t_stack *stack_a)
-{
-	int	s_size;
 
-	s_size = get_stack_size(stack_a);
-	while( s_size >= 2 && stack_a->next)
-	{
-		if (stack_a->value > stack_a->next->value)
-			return (0);
-		stack_a = stack_a->next;
-	}
-	return (1);
-}
-
-void	sort_array(int *arr, int size)
-{
-	int	i;
-	int	j;
-	int	tmp;
-
-	i = 0;
-	while (i < size - 1)
-	{
-		j = 0;
-		while (j < size - i - 1)
-		{
-			if (arr[j] > arr[j + 1])
-			{	
-				tmp = arr[j];
-				arr[j] = arr[j + 1];
-				arr[j + 1] = tmp;
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
-void	shift_stack(t_stack **a, t_stack **b)
-{
-	t_stack	*smallest;
-	int		cost;
-
-	if (is_sorted(*a))
-		return;
-	smallest = find_smallest(*a);
-	calculate_cost(*a, smallest);
-	cost = smallest->cost;
-	if (cost > 0)
-		while (cost-- > 0)
-			do_op("ra", a, b);
-	else
-		while (cost++ < 0)
-			do_op("rra", a, b);
-}
-
-void	do_op(char *op, t_stack **stack_a, t_stack **stack_b)
+void	execute_inst(char *op, t_stack **stack_a, t_stack **stack_b)
 {
 	if (ft_strncmp(op, "sa", 2) == 0)
 		swap_a(stack_a);
@@ -92,18 +38,27 @@ void	do_op(char *op, t_stack **stack_a, t_stack **stack_b)
 		revrot_b(stack_b);
 	else if (ft_strncmp(op, "rrr", 3) == 0)
 		rrr(stack_a, stack_b);
-	ft_putendl_fd(op, 1);
 }
 
-int	get_stack_size(t_stack *lst)
+int	main(int argc, char **argv)
 {
-	int	i;
+	t_stack	*a;
+	t_stack	*b;
+	char *line;
 
-	i = 0;
-	while (lst != NULL)
+	a = NULL;
+	b = NULL;
+	if (argc >= 2)
 	{
-		i++;
-		lst = lst->next;
+		handle_input(argv, &a);
+		line = get_next_line(0);
+		while(line)
+		{
+			line = get_next_line(0);
+			execute_inst(line, &a, &b);
+		}
+		ft_putstr_fd("OK\n", 1);
 	}
-	return (i);
+	free_stack(&a);
+	return (0);
 }
