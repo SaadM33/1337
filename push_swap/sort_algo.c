@@ -47,8 +47,8 @@ void	tiny_sort(t_stack **stack_a, t_stack **stack_b)
 
 void	find_targets(t_stack *a, t_stack *b)
 {
-	int closest_max;
-	t_stack *current_a;
+	int		closest_max;
+	t_stack	*current_a;
 
 	while (b)
 	{
@@ -61,41 +61,40 @@ void	find_targets(t_stack *a, t_stack *b)
 				current_a->value < closest_max)
 			{
 				b->target = current_a;
-                closest_max = current_a->value;
+				closest_max = current_a->value;
 			}
 			current_a = current_a->next;
 		}
 		if (!b->target)
 		{
-            b->target = find_smallest(a);
-        }
+			b->target = find_smallest(a);
+		}
 		b = b->next;
 	}
 }
 
-
-void fill_costs(t_stack *a, t_stack *b)
+void	fill_costs(t_stack *a, t_stack *b)
 {
-    t_stack *cur_a;
-    t_stack *cur_b;
+	t_stack	*cur_a;
+	t_stack	*cur_b;
 
 	cur_a = a;
 	cur_b = b;
-    while (cur_a)
+	while (cur_a)
 	{
-        calculate_cost(a, cur_a);
-        cur_a = cur_a->next;
-    }
-    while (cur_b)
+		calculate_cost(a, cur_a);
+		cur_a = cur_a->next;
+	}
+	while (cur_b)
 	{
-        calculate_cost(b, cur_b);
-        cur_b = cur_b->next;
-    }
+		calculate_cost(b, cur_b);
+		cur_b = cur_b->next;
+	}
 }
 
 void	move_cheapest(t_stack **a, t_stack **b)
 {
-	t_stack *cheapest;
+	t_stack	*cheapest;
 	int		cost_a;
 	int		cost_b;
 
@@ -103,21 +102,21 @@ void	move_cheapest(t_stack **a, t_stack **b)
 	cost_b = cheapest->cost;
 	cost_a = cheapest->target->cost;
 	while (cost_a > 0 && cost_b > 0)
-    {
-        do_op("rr", a, b);
-        cost_a--;
-        cost_b--;
-    }
+	{
+		do_op("rr", a, b);
+		cost_a--;
+		cost_b--;
+	}
 	while (cost_a < 0 && cost_b < 0)
-    {
-        do_op("rrr", a, b);
-        cost_a++;
-        cost_b++;
-    }
+	{
+		do_op("rrr", a, b);
+		cost_a++;
+		cost_b++;
+	}
 	while (cost_a > 0) { do_op("ra", a, b); cost_a--; }
-    while (cost_a < 0) { do_op("rra", a, b); cost_a++; }
-    while (cost_b > 0) { do_op("rb", a, b); cost_b--; }
-    while (cost_b < 0) { do_op("rrb", a, b); cost_b++; }
+	while (cost_a < 0) { do_op("rra", a, b); cost_a++; }
+	while (cost_b > 0) { do_op("rb", a, b); cost_b--; }
+	while (cost_b < 0) { do_op("rrb", a, b); cost_b++; }
 	do_op("pa", a, b);
 }
 

@@ -65,4 +65,6 @@ void	find_targets(t_stack *a, t_stack *b);
 void	shift_stack(t_stack **a, t_stack **b);
 void	move_cheapest(t_stack **a, t_stack **b);
 t_stack *find_cheapest_move(t_stack *b);
+int		find_median(t_stack *stack);
+void	sort_array(int *arr, int size);
 #endif

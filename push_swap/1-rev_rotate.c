@@ -12,10 +12,10 @@
 
 #include "push_swap.h"
 
-void    revrot_a(t_stack **stack_a)
+void	revrot_a(t_stack **stack_a)
 {
-	t_stack *last;
-	t_stack *prev;
+	t_stack	*last;
+	t_stack	*prev;
 
 	if (!stack_a || !(*stack_a) || !(*stack_a)->next)
 		return;
@@ -30,10 +30,10 @@ void    revrot_a(t_stack **stack_a)
 	*stack_a = last;
 }
 
-void    revrot_b(t_stack **stack_b)
+void	revrot_b(t_stack **stack_b)
 {
-	t_stack *last;
-	t_stack *prev;
+	t_stack	*last;
+	t_stack	*prev;
 
 	if (!stack_b || !(*stack_b) || !(*stack_b)->next)
 		return;
@@ -48,7 +48,7 @@ void    revrot_b(t_stack **stack_b)
 	*stack_b = last;
 }
 
-void    rrr(t_stack **stack_a, t_stack **stack_b)
+void	rrr(t_stack **stack_a, t_stack **stack_b)
 {
 	revrot_a(stack_a);
 	revrot_b(stack_b);

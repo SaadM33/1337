@@ -12,10 +12,11 @@
 
 #include "push_swap.h"
 
-void    free_split(char **args)
+void	free_split(char **args)
 {
-	int	i = 0;
+	int	i;
 
+	i = 0;
 	while (args[i])
 	{
 		free(args[i]);
@@ -24,9 +25,9 @@ void    free_split(char **args)
 	free(args);
 }
 
-void free_stack(t_stack **stack)
+void	free_stack(t_stack **stack)
 {
-	t_stack *temp;
+	t_stack	*temp;
 
 	while (*stack)
 	{
@@ -37,14 +38,13 @@ void free_stack(t_stack **stack)
 }
 long ft_atol(const char *str)
 {
-	int     i;
-	int     sign;
-	long    result;
+	int		i;
+	int		sign;
+	long	result;
 
 	i = 0;
 	sign = 1;
 	result = 0;
-
 	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
 		i++;
 	if (str[i] == '-' || str[i] == '+')
@@ -61,7 +61,7 @@ long ft_atol(const char *str)
 	return (result * sign);
 }
 
-int check_duplicate(t_stack *stack, int value)
+int	check_duplicate(t_stack *stack, int value)
 {
 	while (stack)
 	{
@@ -72,10 +72,10 @@ int check_duplicate(t_stack *stack, int value)
 	return (1);
 }
 
-int is_valid_number(char *str)
+int	is_valid_number(char *str)
 {
-	int     i;
-	long    num;
+	int		i;
+	long	num;
 
 	i = 0;
 	if (str[i] == '-' || str[i] == '+')

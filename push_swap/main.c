@@ -11,12 +11,11 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_stack *stack_a;
-	t_stack *stack_b;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
 
 	stack_a = NULL;
 	stack_b = NULL;
@@ -32,23 +31,16 @@ int main(int argc, char **argv)
 			else if (get_stack_size(stack_a) > 3)
 				sort_turk(&stack_a, &stack_b);
 		}
-		t_stack *temp = stack_a;
-		printf("\n");
-		while (temp)
-		{
-			printf("%d\n", temp->value);
-			temp = temp->next;
-		}
 	}
 	free_stack(&stack_a);
 	return (0);
 }
 
-void handle_input(char **av, t_stack **stack_a)
+void	handle_input(char **av, t_stack **stack_a)
 {
-	int i;
-	int	j;
-	char **args;
+	int		i;
+	int		j;
+	char	**args;
 
 	i = 1;
 	while (av[i])
@@ -69,10 +61,10 @@ void handle_input(char **av, t_stack **stack_a)
 	}
 }
 
-void add_to_stack(t_stack **stack, int value, char **args)
+void	add_to_stack(t_stack **stack, int value, char **args)
 {
-	t_stack *new_node;
-	t_stack *temp;
+	t_stack	*new_node;
+	t_stack	*temp;
 
 	new_node = malloc(sizeof(t_stack));
 	if (!new_node)
@@ -90,7 +82,7 @@ void add_to_stack(t_stack **stack, int value, char **args)
 	}
 }
 
-void handle_error(t_stack **stack_a, char **args)
+void	handle_error(t_stack **stack_a, char **args)
 {
 	free_stack(stack_a);
 	free_split(args);

@@ -45,3 +45,10 @@ void	ss(t_stack **stack_a, t_stack **stack_b)
 	swap_a(stack_a);
 	swap_b(stack_b);
 }
+
+int	ft_abs(int n)
+{
+	if (n < 0)
+		n = -n;
+	return (n);
+}

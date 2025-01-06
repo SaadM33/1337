@@ -1,6 +1,6 @@
 NAME = push_swap
 CC = gcc
-CFLAGS = -g -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 
 SRCS = 1-rev_rotate.c  2-rotate_push.c  3-swap.c  main.c  sort_algo.c  utils_input.c  utils_sort2.c  utils_sort.c
 OBJS = $(SRCS:.c=.o)
@@ -8,7 +8,7 @@ OBJS = $(SRCS:.c=.o)
 LIBFT_PATH = ./libft
 LIBFT = $(LIBFT_PATH)/libft.a
 
-all: $(NAME) clean
+all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $@
