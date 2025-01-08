@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:25:58 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/01/06 21:09:21 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/01/08 15:51:38 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,13 @@ int	main(int argc, char **argv)
 		line = get_next_line(0);
 		while(line)
 		{
-			line = get_next_line(0);
 			execute_inst(line, &a, &b);
+			line = get_next_line(0);
 		}
-		ft_putstr_fd("OK\n", 1);
+		if (is_sorted(a) == 1)
+			ft_putstr_fd("OK\n", 1);
+		else
+			ft_putstr_fd("KO\n", 1);
 	}
 	free_stack(&a);
 	return (0);
