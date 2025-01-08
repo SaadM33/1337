@@ -57,8 +57,8 @@ void	find_targets(t_stack *a, t_stack *b)
 		b->target = NULL;
 		while (current_a)
 		{
-			if (b->value < current_a->value &&
-				current_a->value < closest_max)
+			if (b->value < current_a->value
+				&& current_a->value < closest_max)
 			{
 				b->target = current_a;
 				closest_max = current_a->value;
@@ -101,24 +101,17 @@ void	move_cheapest(t_stack **a, t_stack **b)
 	cheapest = find_cheapest_move(*b);
 	cost_b = cheapest->cost;
 	cost_a = cheapest->target->cost;
-	while (cost_a > 0 && cost_b > 0)
-	{
+	while (cost_a > 0 && cost_b > 0 && cost_a-- && cost_b--)
 		do_op("rr", a, b);
-		cost_a--;
-		cost_b--;
-	}
-	while (cost_a < 0 && cost_b < 0)
-	{
+	while (cost_a < 0 && cost_b < 0 && cost_a++ && cost_b++)
 		do_op("rrr", a, b);
-		cost_a++;
-		cost_b++;
-	}
-	while (cost_a > 0) { do_op("ra", a, b); cost_a--; }
-	while (cost_a < 0) { do_op("rra", a, b); cost_a++; }
-	while (cost_b > 0) { do_op("rb", a, b); cost_b--; }
-	while (cost_b < 0) { do_op("rrb", a, b); cost_b++; }
+	while (cost_a > 0 && cost_a--)
+		do_op("ra", a, b);
+	while (cost_a < 0 && cost_a++)
+		do_op("rra", a, b);
+	while (cost_b > 0 && cost_b--)
+		do_op("rb", a, b);
+	while (cost_b < 0 && cost_b++)
+		do_op("rrb", a, b);
 	do_op("pa", a, b);
 }
-
-
-

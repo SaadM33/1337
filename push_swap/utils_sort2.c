@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 22:13:57 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/01/06 17:04:33 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/01/08 19:05:28 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_stack	*find_smallest(t_stack *a)
 		}
 		a = a->next;
 	}
-	return smallest;
+	return (smallest);
 }
 
 void	calculate_cost(t_stack *stack, t_stack *node)
@@ -43,7 +43,7 @@ void	calculate_cost(t_stack *stack, t_stack *node)
 	if (position >= size / 2)
 		node->cost = position - size;
 	else
-		node->cost = position; 
+		node->cost = position;
 }
 
 t_stack	*find_cheapest_move(t_stack *b)

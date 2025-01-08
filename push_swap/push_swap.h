@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -18,25 +17,25 @@
 # include <unistd.h>
 # include <stddef.h>
 # include <limits.h>
-#include <stdio.h>
+# include <stdio.h>
 # include "libft/libft.h"
 
 typedef struct s_stack
 {
-	int		value;
-	int		cost;
-	struct s_stack	*target;
 	struct s_stack	*next;
-}	t_stack;
+	struct s_stack	*target;
+	int				value;
+	int				cost;
+}		t_stack;
 
 void	handle_input(char **av, t_stack **stack_a);
 int		is_valid_number(char *str);
 void	add_to_stack(t_stack **stack, int value, char **args);
-void 	handle_error(t_stack **stack_a, char **args);
+void	handle_error(t_stack **stack_a, char **args);
 void	free_split(char **args);
-void 	free_stack(t_stack **stack);
+void	free_stack(t_stack **stack);
 long	ft_atol(const char *str);
-int 	check_duplicate(t_stack *stack, int value);
+int		check_duplicate(t_stack *stack, int value);
 int		ft_abs(int n);
 
 void	push_a(t_stack **stack_a, t_stack **stack_b);
@@ -52,7 +51,7 @@ void	revrot_b(t_stack **stack_b);
 void	rrr(t_stack **stack_a, t_stack **stack_b);
 
 int		is_sorted(t_stack *stack_a);
-void 	sort_turk(t_stack **stack_a, t_stack **stack_b);
+void	sort_turk(t_stack **stack_a, t_stack **stack_b);
 int		get_stack_size(t_stack *lst);
 void	do_op(char *op, t_stack **stack_a, t_stack **stack_b);
 void	tiny_sort(t_stack **stack_a, t_stack **stack_b);
@@ -64,7 +63,7 @@ void	fill_costs(t_stack *a, t_stack *b);
 void	find_targets(t_stack *a, t_stack *b);
 void	shift_stack(t_stack **a, t_stack **b);
 void	move_cheapest(t_stack **a, t_stack **b);
-t_stack *find_cheapest_move(t_stack *b);
+t_stack	*find_cheapest_move(t_stack *b);
 int		find_median(t_stack *stack);
 void	sort_array(int *arr, int size);
 

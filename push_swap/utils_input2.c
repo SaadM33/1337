@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 17:54:21 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/01/06 17:54:33 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/01/08 19:09:18 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ void	handle_input(char **av, t_stack **stack_a)
 	while (av[i])
 	{
 		args = ft_split(av[i], ' ');
-        j = 0;
-        while (args[j])
-	    {
+		j = 0;
+		while (args[j])
+		{
 			if (!is_valid_number(args[j]))
 				handle_error(stack_a, args);
 			if (!check_duplicate(*stack_a, ft_atol(args[j])))
 				handle_error(stack_a, args);
 			add_to_stack(stack_a, ft_atol(args[j]), args);
-	        j++;
-	    }
+			j++;
+		}
 		free_split(args);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 14:33:48 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/01/06 18:54:40 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/01/08 19:08:51 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	is_sorted(t_stack *stack_a)
 	int	s_size;
 
 	s_size = get_stack_size(stack_a);
-	while( s_size >= 2 && stack_a->next)
+	while (s_size >= 2 && stack_a->next)
 	{
 		if (stack_a->value > stack_a->next->value)
 			return (0);
@@ -39,7 +39,7 @@ void	sort_array(int *arr, int size)
 		while (j < size - i - 1)
 		{
 			if (arr[j] > arr[j + 1])
-			{	
+			{
 				tmp = arr[j];
 				arr[j] = arr[j + 1];
 				arr[j + 1] = tmp;
@@ -56,7 +56,7 @@ void	shift_stack(t_stack **a, t_stack **b)
 	int		cost;
 
 	if (is_sorted(*a))
-		return;
+		return ;
 	smallest = find_smallest(*a);
 	calculate_cost(*a, smallest);
 	cost = smallest->cost;
@@ -70,28 +70,28 @@ void	shift_stack(t_stack **a, t_stack **b)
 
 void	do_op(char *op, t_stack **stack_a, t_stack **stack_b)
 {
-	if (ft_strncmp(op, "sa", 2) == 0)
-		swap_a(stack_a);
-	else if (ft_strncmp(op, "sb", 2) == 0)
-		swap_b(stack_b);
-	else if (ft_strncmp(op, "ss", 2) == 0)
-		ss(stack_a, stack_b);
-	else if (ft_strncmp(op, "pa", 2) == 0)
-		push_a(stack_a, stack_b);
-	else if (ft_strncmp(op, "pb", 2) == 0)
-		push_b(stack_a, stack_b);
-	else if (ft_strncmp(op, "ra", 2) == 0)
-		rot_a(stack_a);
-	else if (ft_strncmp(op, "rb", 2) == 0)
-		rot_b(stack_b);
-	else if (ft_strncmp(op, "rr", 2) == 0)
-		rr(stack_a, stack_b);
-	else if (ft_strncmp(op, "rra", 3) == 0)
+	if (ft_strcmp(op, "rra") == 0)
 		revrot_a(stack_a);
-	else if (ft_strncmp(op, "rrb", 3) == 0)
+	else if (ft_strcmp(op, "rrb") == 0)
 		revrot_b(stack_b);
-	else if (ft_strncmp(op, "rrr", 3) == 0)
+	else if (ft_strcmp(op, "rrr") == 0)
 		rrr(stack_a, stack_b);
+	if (ft_strcmp(op, "sa") == 0)
+		swap_a(stack_a);
+	else if (ft_strcmp(op, "sb") == 0)
+		swap_b(stack_b);
+	else if (ft_strcmp(op, "ss") == 0)
+		ss(stack_a, stack_b);
+	else if (ft_strcmp(op, "pa") == 0)
+		push_a(stack_a, stack_b);
+	else if (ft_strcmp(op, "pb") == 0)
+		push_b(stack_a, stack_b);
+	else if (ft_strcmp(op, "ra") == 0)
+		rot_a(stack_a);
+	else if (ft_strcmp(op, "rb") == 0)
+		rot_b(stack_b);
+	else if (ft_strcmp(op, "rr") == 0)
+		rr(stack_a, stack_b);
 	ft_putendl_fd(op, 1);
 }
 

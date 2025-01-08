@@ -36,7 +36,8 @@ void	free_stack(t_stack **stack)
 		*stack = temp;
 	}
 }
-long ft_atol(const char *str)
+
+long	ft_atol(const char *str)
 {
 	int		i;
 	int		sign;

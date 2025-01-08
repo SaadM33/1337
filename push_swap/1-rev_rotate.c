@@ -18,12 +18,12 @@ void	revrot_a(t_stack **stack_a)
 	t_stack	*prev;
 
 	if (!stack_a || !(*stack_a) || !(*stack_a)->next)
-		return;
+		return ;
 	last = *stack_a;
 	while (last->next)
 	{
 		prev = last;
-		last = last->next;	
+		last = last->next;
 	}
 	prev->next = NULL;
 	last->next = *stack_a;
@@ -36,12 +36,12 @@ void	revrot_b(t_stack **stack_b)
 	t_stack	*prev;
 
 	if (!stack_b || !(*stack_b) || !(*stack_b)->next)
-		return;
+		return ;
 	last = *stack_b;
 	while (last->next)
 	{
 		prev = last;
-		last = last->next;	
+		last = last->next;
 	}
 	prev->next = NULL;
 	last->next = *stack_b;

@@ -14,11 +14,10 @@
 
 void	push_a(t_stack **stack_a, t_stack **stack_b)
 {
-	 t_stack	*temp;
+	t_stack	*temp;
 
 	if (!stack_a || !stack_b || !(*stack_b))
-		return;
-
+		return ;
 	temp = *stack_b;
 	*stack_b = (*stack_b)->next;
 	if (!*stack_a)
@@ -37,7 +36,7 @@ void	push_b(t_stack **stack_a, t_stack **stack_b)
 	t_stack	*temp;
 
 	if (!stack_a || !(*stack_a))
-		return; 
+		return ;
 	temp = *stack_a;
 	*stack_a = temp->next;
 	if (!*stack_b)
@@ -57,7 +56,7 @@ void	rot_a(t_stack **stack_a)
 	t_stack	*temp;
 
 	if (!stack_a || !(*stack_a) || !(*stack_a)->next)
-		return;
+		return ;
 	head = *stack_a;
 	*stack_a = head->next;
 	head->next = NULL;
@@ -75,7 +74,7 @@ void	rot_b(t_stack **stack_b)
 	t_stack	*temp;
 
 	if (!stack_b || !(*stack_b) || !(*stack_b)->next)
-		return;
+		return ;
 	head = *stack_b;
 	*stack_b = head->next;
 	head->next = NULL;

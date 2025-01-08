@@ -14,6 +14,8 @@ LIBFT = $(LIBFT_PATH)/libft.a
 
 all: $(NAME)
 
+both: all bonus clean
+
 $(NAME): $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $@
 

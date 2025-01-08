@@ -15,10 +15,10 @@
 void	swap_a(t_stack **stack_a)
 {
 	t_stack	*head;
- 	t_stack	*next;
+	t_stack	*next;
 
 	if (!stack_a || !(*stack_a) || !(*stack_a)->next)
-		return;
+		return ;
 	head = *stack_a;
 	next = (*stack_a)->next;
 	*stack_a = next;
@@ -29,10 +29,10 @@ void	swap_a(t_stack **stack_a)
 void	swap_b(t_stack **stack_b)
 {
 	t_stack	*head;
- 	t_stack	*next;
+	t_stack	*next;
 
 	if (!stack_b || !(*stack_b) || !(*stack_b)->next)
-		return;
+		return ;
 	head = *stack_b;
 	next = (*stack_b)->next;
 	*stack_b = next;
