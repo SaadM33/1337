@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:25:58 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/01/08 19:07:06 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/01/09 15:18:21 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,14 @@ static void	execute_inst_extra(char *op, t_stack **a, t_stack **b)
 	else
 	{
 		ft_putstr_fd("Error\n", 2);
+		free(op);
 		free_stack(a);
 		free_stack(b);
+		while (op)
+		{
+			op = get_next_line(0);
+			free(op);
+		}
 		exit(1);
 	}
 }
