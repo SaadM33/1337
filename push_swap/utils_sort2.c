@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 22:13:57 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/01/08 19:05:28 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/01/09 09:58:03 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	push_all_save_three(t_stack **stack_a, t_stack **stack_b)
 	stack_size = get_stack_size(*stack_a);
 	mid_value = find_median(*stack_a);
 	pushed = 0;
-	while (stack_size > 6 && pushed < stack_size / 2)
+	while (stack_size > 3 && pushed < stack_size / 2)
 	{
 		if ((*stack_a)->value <= mid_value)
 		{
