@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 23:39:47 by sel-maaq          #+#    #+#             */
-/*   Updated: 2024/10/26 15:59:15 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/01/10 22:10:26 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stddef.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include "get_next_line_bonus.h"
 
 /* ---------------	LISTS		--------------- */
 typedef struct s_list
@@ -49,7 +50,6 @@ char	*ft_strchr(const char *str, int c);
 char	*ft_strrchr(const char *str, int c);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
-int		ft_strcmp(const char *s1, const char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strnstr(const char *s1, const char *s2, size_t n);
 char	*ft_strdup(const char *s1);
