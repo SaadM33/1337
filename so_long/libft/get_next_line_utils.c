@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 18:26:34 by sel-maaq          #+#    #+#             */
-/*   Updated: 2024/11/08 23:55:19 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/01/11 10:03:00 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+size_t	f_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t		i;
 	size_t		j;
@@ -45,7 +45,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	return (dst_len + src_len);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+size_t	f_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
 
@@ -61,14 +61,14 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	return (ft_strlen(src));
 }
 
-char	*ft_strdup(const char *s)
+char	*f_strdup(const char *s)
 {
 	char	*r;
 
 	r = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
 	if (!r)
 		return (NULL);
-	ft_strlcpy(r, s, ft_strlen(s) + 1);
+	f_strlcpy(r, s, ft_strlen(s) + 1);
 	return (r);
 }
 

@@ -9,8 +9,24 @@ int main(int argc, char **argv)
 	char **map;
 
 	int fd = open(argv[1], O_RDONLY);
-	while (line = get_next_line(fd))
+	line = get_next_line(fd);
+	while (line)
 	{
-		ft_putstr_fd(line, 1);
+
+		line = get_next_line(fd);
 	}
+	ft_putnbr_fd(argc, 1);
+}
+
+void	parse_map()
+{
+	char **map;
+
+	map = init_map(map);
+}
+
+
+init_map()
+{
+	
 }

@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:21:42 by sel-maaq          #+#    #+#             */
-/*   Updated: 2024/11/15 22:36:53 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/01/11 10:04:17 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*read_n_save(int fd, char *save, char	*buffer)
 		buffer[null_pos] = '\0';
 		tmp = save;
 		if (save == NULL)
-			save = ft_strdup(buffer);
+			save = f_strdup(buffer);
 		else
 			save = ft_strjoin(save, buffer);
 		free(tmp);
@@ -72,7 +72,7 @@ char	*extract_line_reload(char **save, char *newL_ptr)
 	{
 		if (!*save)
 			return (NULL);
-		result = ft_strdup(*save);
+		result = f_strdup(*save);
 		free(*save);
 		*save = NULL;
 		return (result);
@@ -81,7 +81,7 @@ char	*extract_line_reload(char **save, char *newL_ptr)
 	if (!result)
 		return (NULL);
 	tmp = *save;
-	*save = ft_strdup(newL_ptr + 1);
+	*save = f_strdup(newL_ptr + 1);
 	if (!*save)
 		return (NULL);
 	free(tmp);
@@ -114,7 +114,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	s = malloc(len + 1);
 	if (!s)
 		return (NULL);
-	ft_strlcpy(s, s1, ft_strlen(s1) + 1);
-	ft_strlcat(s, s2, len + 1);
+	f_strlcpy(s, s1, ft_strlen(s1) + 1);
+	f_strlcat(s, s2, len + 1);
 	return (s);
 }

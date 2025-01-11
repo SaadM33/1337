@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 23:56:05 by sel-maaq          #+#    #+#             */
-/*   Updated: 2024/11/09 00:02:37 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/01/11 10:00:51 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ char	*extract_line_reload(char **save, char *newL_ptr);
 char	*read_n_save(int fd, char *save, char	*buffer);
 
 size_t	ft_strlen(const char *str);
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
-char	*ft_strdup(const char *s);
+size_t	f_strlcat(char *dst, const char *src, size_t dstsize);
+size_t	f_strlcpy(char *dst, const char *src, size_t dstsize);
+char	*f_strdup(const char *s);
 char	*ft_strndup(const char *s, size_t n);
 char	*ft_strjoin(char const *s1, char const *s2);
 
