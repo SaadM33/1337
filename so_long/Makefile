@@ -1,10 +1,10 @@
 NAME = so_long
 BONUS = checker
 CC = gcc
-CFLAGS =  -Wall -Werror -Wextra
+CFLAGS =  -g -Wall -Werror -Wextra
 
-SRCS = so_long.c
-SRCS_BONUS = checker_bonus.c get_next_line.c get_next_line_utils.c 1-rev_rotate.c  2-rotate_push.c  3-swap.c  sort_algo.c  utils_input.c  utils_input2.c  utils_sort2.c  utils_sort.c
+SRCS = so_long.c map_parser.c
+SRCS_BONUS = 
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
@@ -13,6 +13,11 @@ LIBFT = $(LIBFT_PATH)/libft.a
 
 
 all: $(NAME)
+
+fresh : all clean clearscr
+
+clearscr:
+	clear
 
 both: all bonus clean
 
@@ -25,11 +30,6 @@ $(NAME): $(OBJS) $(LIBFT)
 $(LIBFT):
 	make -C $(LIBFT_PATH)
 
-bonus: $(BONUS)
-
-$(BONUS): $(OBJS_BONUS) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIBFT) -o $(BONUS)
-
 clean:
 	rm -f $(OBJS) $(OBJS_BONUS)
 	make -C $(LIBFT_PATH) clean
@@ -39,5 +39,10 @@ fclean: clean
 	make -C $(LIBFT_PATH) fclean
 
 re: fclean all
+
+bonus: $(BONUS)
+
+$(BONUS): $(OBJS_BONUS) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIBFT) -o $(BONUS)
 
 .PHONY: all clean fclean re bonus
