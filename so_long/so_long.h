@@ -14,9 +14,11 @@
 # define  SO_LONG_H
 
 # include "libft/libft.h"
-# include <mlx.h>
+// # include <mlx.h>
 # include <fcntl.h>
 # include <stdlib.h>
+# include <stdio.h>
+
 
 typedef struct s_map
 {
@@ -58,7 +60,7 @@ int     handle_key(int keycode, t_game *game);
 void    move_player(t_game *game, int new_x, int new_y);
 
 // Cleanup
-void    free_map(t_map *map);
+void    free_map(char **map);
 int     clean_exit(t_game *game);
 
 
