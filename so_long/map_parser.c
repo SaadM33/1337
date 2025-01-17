@@ -42,16 +42,16 @@ int parse_map(t_map *map, char *filename)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (line[ft_strlen(line) - 1] == '\n')
+		if (ft_strlen(line) > 0 && line[ft_strlen(line) - 1] == '\n')
     		line[ft_strlen(line) - 1] = '\0';
-		map->grid[i++] = line;
+		map->grid[i] = line;
 		if (i == 0)
 			map->width = ft_strlen(line);
 		line = get_next_line(fd);
+		i++;
 	}
 	map->grid[i] = NULL;
-	close(fd);
-	return (1);
+	return (close(fd), 1);
 }
 
 void	handle_error(t_map *map, char *str)
