@@ -1,6 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_parser.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/27 18:14:21 by sel-maaq          #+#    #+#             */
+/*   Updated: 2025/01/27 20:16:45 by sel-maaq         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
-static int init_map(t_map *map, char *filename)
+static void	handle_empty(char *str)
+{
+	ft_putstr_fd("Error\n", 1);
+	ft_putendl_fd(str, 2);
+}
+
+static int	init_map(t_map *map, char *filename)
 {
 	int		height;
 	int		fd;
@@ -17,36 +35,39 @@ static int init_map(t_map *map, char *filename)
 		free(line);
 		line = get_next_line(fd);
 	}
+	map->height = height;
 	if (height == 0)
 		return (close(fd), 0);
-	map->height = height;
 	map->grid = malloc(sizeof(char *) * (height + 1));
 	if (!map->grid)
-		handle_error(map, "error in malloc");
+		handle_error(map, "error in malloc", fd);
 	map->collectibles = 0;
 	map->exit = 0;
 	map->player = 0;
 	return (close(fd), 1);
 }
 
-int parse_map(t_map *map, char *filename)
+int	parse_map(t_map *map, char *filename)
 {
-	int     fd;
+	int		fd;
 	int		i;
-	char    *line;
+	char	*line;
+	char	*line_pro;
 
 	if (!init_map(map, filename))
-		return (0);
+		return (handle_empty("empty map or no such file"), 0);
 	fd = open(filename, O_RDONLY);
 	i = 0;
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (ft_strlen(line) > 0 && line[ft_strlen(line) - 1] == '\n')
-    		line[ft_strlen(line) - 1] = '\0';
-		map->grid[i] = line;
+		line_pro = cpy_no_nl(line);
+		if (!line_pro)
+			handle_error(map, "error in mallocing the copy", fd);
+		free(line);
+		map->grid[i] = line_pro;
 		if (i == 0)
-			map->width = ft_strlen(line);
+			map->width = ft_strlen(line_pro);
 		line = get_next_line(fd);
 		i++;
 	}
@@ -54,10 +75,35 @@ int parse_map(t_map *map, char *filename)
 	return (close(fd), 1);
 }
 
-void	handle_error(t_map *map, char *str)
+char	*cpy_no_nl(char *str)
+{
+	int		len;
+	int		i;
+	char	*res;
+
+	i = 0;
+	len = ft_strlen(str);
+	if (ft_strchr(str, '\n') != NULL)
+		res = malloc(len);
+	else
+		res = malloc(len + 1);
+	if (!res)
+		return (NULL);
+	while (str[i] && str[i] != '\n')
+	{
+		res[i] = str[i];
+		i++;
+	}
+	res[i] = '\0';
+	return (res);
+}
+
+void	handle_error(t_map *map, char *str, int fd)
 {
 	free_map(map->grid);
 	ft_putstr_fd("Error\n", 1);
 	ft_putendl_fd(str, 2);
+	if (fd != 0)
+		close(fd);
 	exit(0);
 }

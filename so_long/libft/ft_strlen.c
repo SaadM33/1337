@@ -6,13 +6,13 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 10:12:02 by sel-maaq          #+#    #+#             */
-/*   Updated: 2024/10/23 23:36:12 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/01/25 09:53:36 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlen(const char *str)
+size_t	ft_strlen(const char *str)
 {
 	int	i;
 

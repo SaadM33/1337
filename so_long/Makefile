@@ -3,7 +3,7 @@ BONUS = checker
 CC = gcc
 CFLAGS =  -g -Wall -Werror -Wextra
 
-SRCS = so_long.c map_parser.c validation.c
+SRCS = so_long.c map_parser.c validation.c validation2.c
 SRCS_BONUS = 
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)

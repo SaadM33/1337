@@ -6,14 +6,14 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 23:05:35 by sel-maaq          #+#    #+#             */
-/*   Updated: 2024/11/15 22:37:01 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/01/25 15:01:00 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 42
+# define BUFFER_SIZE 1000
 #endif
 
 char	*get_next_line(int fd)

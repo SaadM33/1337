@@ -1,0 +1,76 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validation2.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/27 18:15:40 by sel-maaq          #+#    #+#             */
+/*   Updated: 2025/01/27 18:18:22 by sel-maaq         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "so_long.h"
+
+void	find_player(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map->grid[i])
+	{
+		j = 0;
+		while (map->grid[i][j])
+		{
+			if (map->grid[i][j] == 'P')
+			{
+				map->player_x = i;
+				map->player_y = j;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void	flood_fill(char **grid, int x, int y, t_map *map)
+{
+	if (x < 0 || y < 0 || x >= map->height || y >= map->width
+		|| grid[x][y] == '1' || grid[x][y] == 'V')
+		return ;
+	if (grid[x][y] == 'C')
+		map->collectibles--;
+	if (grid[x][y] == 'E')
+		map->exit--;
+	grid[x][y] = 'V';
+	flood_fill(grid, x + 1, y, map);
+	flood_fill(grid, x - 1, y, map);
+	flood_fill(grid, x, y + 1, map);
+	flood_fill(grid, x, y - 1, map);
+}
+
+char	**copy_map(t_map *map)
+{
+	char	**copy;
+	int		i;
+
+	copy = malloc(sizeof(char *) * (map->height + 1));
+	if (!copy)
+		return (NULL);
+	i = 0;
+	while (i < map->height)
+	{
+		copy[i] = ft_strdup(map->grid[i]);
+		if (!copy[i])
+		{
+			while (i > 0)
+				free(copy[--i]);
+			free(copy);
+			return (NULL);
+		}
+		i++;
+	}
+	copy[i] = NULL;
+	return (copy);
+}

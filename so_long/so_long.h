@@ -48,13 +48,17 @@ typedef struct s_game
 
 // Map parsing
 int		parse_map(t_map *map, char *filename);
-void	validate_map(t_map *map);
-void	validate_rectangular(t_map *map);
+void	validate_map(t_map *map, char *filename);
+void	validate_rectangular(t_map *map, char *filename);
 void	validate_elements(t_map *map);
 void	validate_walls(t_map *map);
 void	validate_path(t_map *map);
 
-int     check_path(t_map *map);
+// helper functions
+void	flood_fill(char **grid, int x, int y, t_map *map);
+char	**copy_map(t_map *map);
+void	find_player(t_map *map);
+char	*cpy_no_nl(char *str);
 
 // Game initialization
 int     init_game(t_game *game);
@@ -67,7 +71,7 @@ void    move_player(t_game *game, int new_x, int new_y);
 // Cleanup
 void    free_map(char **map);
 int     clean_exit(t_game *game);
-void	handle_error(t_map *map, char *str);
+void	handle_error(t_map *map, char *str, int fd);
 
 
 #endif
