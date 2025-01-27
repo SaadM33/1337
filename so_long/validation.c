@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 18:18:42 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/01/27 18:25:17 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/01/27 21:08:33 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,14 +102,20 @@ void	validate_walls(t_map *map)
 void	validate_path(t_map *map)
 {
 	char	**cpy_map;
+	int		colle;
+	int		exit;
 
 	cpy_map = copy_map(map);
 	find_player(map);
+	colle = map->collectibles;
+	exit = map->exit;
 	flood_fill(cpy_map, map->player_x, map->player_y, map);
 	if (map->collectibles > 0 || map->exit > 0)
 	{
 		free_map(cpy_map);
 		handle_error(map, "Not all collectibles or exit are reachable", 0);
 	}
+	map->collectibles = colle;
+	map->exit = exit;
 	free_map(cpy_map);
 }
