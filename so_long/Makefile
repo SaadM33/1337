@@ -1,7 +1,7 @@
 NAME = so_long
 BONUS = checker
 CC = gcc
-CFLAGS =  -g -Wall -Werror -Wextra
+CFLAGS =  -g -Wall -Werror -Wextra -lXext -lX11 -lm
 
 SRCS = so_long.c map_parser.c validation.c validation2.c
 SRCS_BONUS = 
@@ -22,7 +22,7 @@ clearscr:
 both: all bonus clean
 
 $(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $@
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) minilibx-linux/libmlx* -o $@
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@

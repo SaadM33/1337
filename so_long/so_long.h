@@ -14,11 +14,11 @@
 # define  SO_LONG_H
 
 # include "libft/libft.h"
-# include "minilibx-linux/mlx.h"
 # include <fcntl.h>
 # include <stdlib.h>
 # include <stdio.h>
 
+# define TILE_SIZE 64
 
 typedef struct s_map
 {
