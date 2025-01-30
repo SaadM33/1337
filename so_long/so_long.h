@@ -14,6 +14,7 @@
 # define  SO_LONG_H
 
 # include "libft/libft.h"
+# include "minilibx-linux/mlx.h"
 # include <fcntl.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -61,8 +62,9 @@ void	find_player(t_map *map);
 char	*cpy_no_nl(char *str);
 
 // Game initialization
-int     init_game(t_game *game);
-int     load_images(t_game *game);
+void	init_game(t_game *game, t_map *map);
+void	load_images(t_game *game, t_map *map);
+void	render_map(t_game *game);
 
 // Game logic
 int     handle_key(int keycode, t_game *game);

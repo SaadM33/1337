@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 23:39:47 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/01/25 09:53:30 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/01/30 15:06:30 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stddef.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include "get_next_line_bonus.h"
+# include "get_next_line.h"
 
 /* ---------------	LISTS		--------------- */
 typedef struct s_list
