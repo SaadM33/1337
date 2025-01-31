@@ -19,7 +19,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-# define TILE_SIZE 64
+
 
 typedef struct s_map
 {

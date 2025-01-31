@@ -1,6 +1,6 @@
 
 #include "so_long.h"
-
+# define TILE_SIZE 64
 void	render_map(t_game *game)
 {
 	int		x;
