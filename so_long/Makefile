@@ -1,6 +1,6 @@
 NAME = so_long
 BONUS = checker
-CC = gcc
+CC = cc
 CFLAGS =  -g -Wall -Werror -Wextra -lXext -lX11 -lm
 
 SRCS = so_long.c map_parser.c validation.c validation2.c render.c game_logic.c
