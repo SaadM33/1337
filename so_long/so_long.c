@@ -13,7 +13,7 @@
 #include "so_long.h"
 # include "minilibx-linux/mlx.h"
 
-void	show_dih(t_game *game)
+void	show_pp(t_game *game)
 {
 	mlx_put_image_to_window(game->mlx, game->win, game->img_wall, 64 * 3, 64*3);
 	mlx_put_image_to_window(game->mlx, game->win, game->img_wall, 64 * 3, 64*4);
@@ -44,10 +44,12 @@ int	main(int argc, char **argv)
 	validate_map(&map, argv[1]);
 	init_game(&game, &map);
 	load_images(&game, &map);
-	// show_dih(&game);
-	render_map(&game);
+	// show_pp(&game);
+	render_map(&game, 0, 0);
+	mlx_hook(game.win, 2, 1L << 0, handle_key, &game);
+	mlx_hook(game.win, 17, 0, close_window, &game);
 	mlx_loop(game.mlx);
-	free_map(map.grid);
+	// free_map(map.grid);
 	return (0);
 }
 

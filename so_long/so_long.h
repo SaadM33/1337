@@ -45,6 +45,7 @@ typedef struct s_game
 	void    *img_floor;
 	int     moves;
 	int     collected;
+	int		exit_open;
 }   t_game;
 
 // Map parsing
@@ -64,15 +65,15 @@ char	*cpy_no_nl(char *str);
 // Game initialization
 void	init_game(t_game *game, t_map *map);
 void	load_images(t_game *game, t_map *map);
-void	render_map(t_game *game);
+void	render_map(t_game *game, int y, int x);
 
 // Game logic
 int     handle_key(int keycode, t_game *game);
 void    move_player(t_game *game, int new_x, int new_y);
 
 // Cleanup
-void    free_map(char **map);
-int     clean_exit(t_game *game);
+void	free_map(char **map);
+int		close_window(t_game *game);
 void	handle_error(t_map *map, char *str, int fd);
 
 
