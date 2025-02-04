@@ -4,7 +4,7 @@ CC = cc
 CFLAGS =  -g -Wall -Werror -Wextra -lXext -lX11 -lm
 
 SRCS = so_long.c map_parser.c validation.c validation2.c render.c game_logic.c
-SRCS_BONUS = 
+SRCS_BONUS = game_logic_bonus.c  map_parser_bonus.c  render_bonus.c  so_long_bonus.c validation2_bonus.c  validation_bonus.c
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
