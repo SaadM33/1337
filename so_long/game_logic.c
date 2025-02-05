@@ -1,7 +1,19 @@
-#include "so_long.h"
-# include <X11/keysym.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   game_logic.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/05 16:24:59 by sel-maaq          #+#    #+#             */
+/*   Updated: 2025/02/05 19:10:38 by sel-maaq         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int handle_key(int keycode, t_game *game)
+#include "so_long.h"
+#include <X11/keysym.h>
+
+int	handle_key(int keycode, t_game *game)
 {
 	int	x;
 	int	y;
@@ -18,26 +30,13 @@ int handle_key(int keycode, t_game *game)
 		move_player(game, game->map, x, y - 1);
 	else if (keycode == XK_s || keycode == XK_Down)
 		move_player(game, game->map, x, y + 1);
-	else if (keycode == XK_q)
-		mlx_string_put(game->mlx, game->win, 10, 10, 0, "you got me");
 	return (1);
 }
 
 void	move_player(t_game *game, t_map *map, int new_x, int new_y)
 {
-	 // Wrap around the map edges
-    if (new_x < 0)
-        new_x = map->width - 1; // Move to the right edge
-    else if (new_x >= map->width)
-        new_x = 0; // Move to the left edge
-    if (new_y < 0)
-        new_y = map->height - 1;
-    else if (new_y >= map->height)
-        {new_y = 0;}
-
-
 	if (map->grid[new_y][new_x] == '1')
-		return;
+		return ;
 	if (map->grid[new_y][new_x] == 'E')
 	{
 		map->grid[new_y][new_x] = 'e';
@@ -55,7 +54,7 @@ void	move_player(t_game *game, t_map *map, int new_x, int new_y)
 		if (map->grid[map->player_y][map->player_x] == 'e')
 			map->grid[map->player_y][map->player_x] = 'E';
 		else
-			map->grid[map->player_y][map->player_x] = '1';
+			map->grid[map->player_y][map->player_x] = '0';
 		map->grid[new_y][new_x] = 'P';
 	}
 	printf("Moves: %d\n", ++game->moves);
@@ -63,7 +62,7 @@ void	move_player(t_game *game, t_map *map, int new_x, int new_y)
 	render_map(game, 0, 0);
 }
 
-int close_window(t_game *game)
+int	close_window(t_game *game)
 {
 	free_map(game->map->grid);
 	mlx_destroy_image(game->mlx, game->img_collect);

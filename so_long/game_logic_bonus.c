@@ -1,7 +1,19 @@
-#include "so_long.h"
-# include <X11/keysym.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   game_logic_bonus.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/05 19:12:53 by sel-maaq          #+#    #+#             */
+/*   Updated: 2025/02/05 19:12:54 by sel-maaq         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int handle_key(int keycode, t_game *game)
+#include "so_long_bonus.h"
+#include <X11/keysym.h>
+
+int	handle_key(int keycode, t_game *game)
 {
 	int	x;
 	int	y;
@@ -37,7 +49,7 @@ void	move_player(t_game *game, t_map *map, int new_x, int new_y)
 
 
 	if (map->grid[new_y][new_x] == '1')
-		return;
+		return ;
 	if (map->grid[new_y][new_x] == 'E')
 	{
 		map->grid[new_y][new_x] = 'e';
@@ -55,7 +67,7 @@ void	move_player(t_game *game, t_map *map, int new_x, int new_y)
 		if (map->grid[map->player_y][map->player_x] == 'e')
 			map->grid[map->player_y][map->player_x] = 'E';
 		else
-			map->grid[map->player_y][map->player_x] = '1';
+			map->grid[map->player_y][map->player_x] = '0';
 		map->grid[new_y][new_x] = 'P';
 	}
 	printf("Moves: %d\n", ++game->moves);
@@ -63,7 +75,7 @@ void	move_player(t_game *game, t_map *map, int new_x, int new_y)
 	render_map(game, 0, 0);
 }
 
-int close_window(t_game *game)
+int	close_window(t_game *game)
 {
 	free_map(game->map->grid);
 	mlx_destroy_image(game->mlx, game->img_collect);

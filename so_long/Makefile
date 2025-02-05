@@ -1,7 +1,7 @@
 NAME = so_long
-BONUS = checker
+BONUS = so_long_bonus
 CC = cc
-CFLAGS =  -g -Wall -Werror -Wextra -lXext -lX11 -lm
+CFLAGS =  -g -Wall -Werror -Wextra 
 
 SRCS = so_long.c map_parser.c validation.c validation2.c render.c game_logic.c
 SRCS_BONUS = game_logic_bonus.c  map_parser_bonus.c  render_bonus.c  so_long_bonus.c validation2_bonus.c  validation_bonus.c
@@ -22,7 +22,7 @@ clearscr:
 both: all bonus clean
 
 $(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) minilibx-linux/libmlx* -o $@
+	$(CC) $(CFLAGS) -lXext -lX11 -lm $(OBJS) $(LIBFT) minilibx-linux/libmlx* -o $@
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -43,6 +43,6 @@ re: fclean all
 bonus: $(BONUS)
 
 $(BONUS): $(OBJS_BONUS) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIBFT) -o $(BONUS)
+	$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIBFT) minilibx-linux/libmlx* -o $(BONUS)
 
 .PHONY: all clean fclean re bonus
