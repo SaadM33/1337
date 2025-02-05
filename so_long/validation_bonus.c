@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 18:18:42 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/05 15:09:32 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/02/05 20:53:38 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	validate_elements(t_map *map)
 		j = 0;
 		while (map->grid[i][j])
 		{
-			if (ft_strchr("01CEP", map->grid[i][j]) == NULL)
+			if (ft_strchr("01CEPK", map->grid[i][j]) == NULL)
 				handle_error(map, "map has invalid elements", 0);
 			if (map->grid[i][j] == 'C')
 				map->collectibles++;

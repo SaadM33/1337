@@ -10,36 +10,36 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
-# include "minilibx-linux/mlx.h"
+#include "so_long.h"
 
-void print_map(t_map *map)
-{
-	char	**grid;
-	int 	i = 0;
-	int		j = 0;
+// void print_map(t_map *map)
+// {
+// 	char	**grid;
+// 	int 	i = 0;
+// 	int		j = 0;
 
-	grid = map->grid;
-	while (grid[i])
-	{
-		j = 0;
-		while (grid[i][j])
-		{
-			printf("%c", grid[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-	printf("\n");
-	printf("y pos: %d\n", map->player_y);
-	printf("x pos: %d\n", map->player_x);
-	printf("\n");
-}
+// 	grid = map->grid;
+// 	while (grid[i])
+// 	{
+// 		j = 0;
+// 		while (grid[i][j])
+// 		{
+// 			printf("%c", grid[i][j]);
+// 			j++;
+// 		}
+// 		printf("\n");
+// 		i++;
+// 	}
+// 	printf("\n");
+// 	printf("y pos: %d\n", map->player_y);
+// 	printf("x pos: %d\n", map->player_x);
+// 	printf("\n");
+// }
+
 int	main(int argc, char **argv)
 {
 	t_map	map;
-	t_game game;
+	t_game	game;
 
 	if (argc != 2)
 	{	

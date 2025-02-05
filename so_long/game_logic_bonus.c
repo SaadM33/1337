@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 19:12:53 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/05 19:12:54 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/02/05 20:50:02 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,6 @@ int	handle_key(int keycode, t_game *game)
 
 void	move_player(t_game *game, t_map *map, int new_x, int new_y)
 {
-	 // Wrap around the map edges
-    if (new_x < 0)
-        new_x = map->width - 1; // Move to the right edge
-    else if (new_x >= map->width)
-        new_x = 0; // Move to the left edge
-    if (new_y < 0)
-        new_y = map->height - 1;
-    else if (new_y >= map->height)
-        {new_y = 0;}
-
-
 	if (map->grid[new_y][new_x] == '1')
 		return ;
 	if (map->grid[new_y][new_x] == 'E')
