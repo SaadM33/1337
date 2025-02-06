@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 19:12:53 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/05 20:50:02 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/02/06 21:06:32 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,20 @@ int	handle_key(int keycode, t_game *game)
 	else if (keycode == XK_s || keycode == XK_Down)
 		move_player(game, game->map, x, y + 1);
 	else if (keycode == XK_q)
-		mlx_string_put(game->mlx, game->win, 10, 10, 0, "you got me");
+	{
+		y = 0;
+		while (game->map->grid[y])
+		{
+			x = 0;
+			while (game->map->grid[y][x])
+			{
+				mlx_string_put(game->mlx, game->win, x*TILE_SIZE, y*TILE_SIZE, 0, "NIGGERS");
+				x++;
+			}
+			y++;
+		}
+	}
+		
 	return (1);
 }
 
@@ -39,6 +52,8 @@ void	move_player(t_game *game, t_map *map, int new_x, int new_y)
 {
 	if (map->grid[new_y][new_x] == '1')
 		return ;
+	else if (map->grid[new_y][new_x] == 'K')
+		close_window(game);
 	if (map->grid[new_y][new_x] == 'E')
 	{
 		map->grid[new_y][new_x] = 'e';
@@ -73,6 +88,7 @@ int	close_window(t_game *game)
 	mlx_destroy_image(game->mlx, game->img_floor);
 	mlx_destroy_image(game->mlx, game->img_player);
 	mlx_destroy_image(game->mlx, game->img_wall);
+	mlx_destroy_image(game->mlx, game->img_enemy);
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);

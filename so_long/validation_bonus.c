@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 18:18:42 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/05 20:53:38 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/02/06 21:11:12 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ void	validate_path(t_map *map)
 	if (map->collectibles > 0 || map->exit > 0)
 	{
 		free_map(cpy_map);
+		printf("%d\n",map->exit);
 		handle_error(map, "Not all collectibles or exit are reachable", 0);
 	}
 	map->collectibles = colle;

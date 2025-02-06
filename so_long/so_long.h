@@ -61,7 +61,7 @@ void	flood_fill(char **grid, int x, int y, t_map *map);
 char	**copy_map(t_map *map);
 void	fill_player_pos(t_map *map);
 char	*cpy_no_nl(char *str);
-void print_map(t_map *map);
+void 	print_map(char **grid);
 // Game initialization
 void	init_game(t_game *game, t_map *map);
 void	load_images(t_game *game, t_map *map);

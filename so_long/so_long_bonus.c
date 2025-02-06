@@ -12,29 +12,27 @@
 
 #include "so_long.h"
 
-// void print_map(t_map *map)
-// {
-// 	char	**grid;
-// 	int 	i = 0;
-// 	int		j = 0;
+void print_map(char **grid)
+{
+	int 	i = 0;
+	int		j = 0;
 
-// 	grid = map->grid;
-// 	while (grid[i])
-// 	{
-// 		j = 0;
-// 		while (grid[i][j])
-// 		{
-// 			printf("%c", grid[i][j]);
-// 			j++;
-// 		}
-// 		printf("\n");
-// 		i++;
-// 	}
-// 	printf("\n");
-// 	printf("y pos: %d\n", map->player_y);
-// 	printf("x pos: %d\n", map->player_x);
-// 	printf("\n");
-// }
+	while (grid[i])
+	{
+		j = 0;
+		while (grid[i][j])
+		{
+			printf("%c", grid[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+	printf("\n");
+	// printf("y pos: %d\n", map->player_y);
+	// printf("x pos: %d\n", map->player_x);
+	// printf("\n");
+}
 
 int	main(int argc, char **argv)
 {

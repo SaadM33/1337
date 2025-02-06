@@ -19,7 +19,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-
+#define TILE_SIZE 50
 
 typedef struct s_map
 {
@@ -42,6 +42,7 @@ typedef struct s_game
 	void    *img_player;
 	void    *img_collect;
 	void    *img_exit;
+	void	*img_enemy;
 	void    *img_floor;
 	void	*img_mid_exit;
 	int     moves;
@@ -61,11 +62,13 @@ void	flood_fill(char **grid, int x, int y, t_map *map);
 char	**copy_map(t_map *map);
 void	fill_player_pos(t_map *map);
 char	*cpy_no_nl(char *str);
-void print_map(t_map *map);
+void 	print_map(char **grid);
+
 // Game initialization
 void	init_game(t_game *game, t_map *map);
 void	load_images(t_game *game, t_map *map);
 void	render_map(t_game *game, int y, int x);
+void	render_moves(t_game *game, t_map *map);
 
 // Game logic
 int     handle_key(int keycode, t_game *game);
