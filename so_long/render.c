@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 16:25:45 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/05 17:58:29 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/02/09 02:32:33 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	load_images(t_game *game, t_map *map)
 			"assets/exit_player2.xpm", &w, &h);
 	game->img_floor = mlx_xpm_file_to_image(game->mlx,
 			"assets/floor2.xpm", &w, &h);
-	if (!game->img_player)
+	if (!game->img_wall)
 		handle_error(map, "error loading wall sprite", 0);
 	else if (!game->img_player)
 		handle_error(map, "error loading player sprite", 0);

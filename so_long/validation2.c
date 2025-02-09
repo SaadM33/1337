@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 18:15:40 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/04 13:16:48 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/02/07 10:51:17 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ void	fill_player_pos(t_map *map)
 
 void	flood_fill(char **grid, int x, int y, t_map *map)
 {
-	if (x < 0 || y < 0 || x >= map->height || y >= map->width
-		|| grid[x][y] == '1' || grid[x][y] == 'V')
+	if (x < 0 || y < 0 || x >= map->width || y >= map->height
+		|| grid[y][x] == '1' || grid[y][x] == 'V')
 		return ;
-	if (grid[x][y] == 'C')
+	if (grid[y][x] == 'C')
 		map->collectibles--;
-	if (grid[x][y] == 'E')
+	if (grid[y][x] == 'E')
 		map->exit--;
-	grid[x][y] = 'V';
+	grid[y][x] = 'V';
 	flood_fill(grid, x + 1, y, map);
 	flood_fill(grid, x - 1, y, map);
 	flood_fill(grid, x, y + 1, map);

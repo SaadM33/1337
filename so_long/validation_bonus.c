@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 18:18:42 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/06 21:11:12 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/02/07 10:18:54 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,20 +103,25 @@ void	validate_path(t_map *map)
 {
 	char	**cpy_map;
 	int		colle;
-	int		exit;
+	int		exitt;
 
 	cpy_map = copy_map(map);
 	fill_player_pos(map);
 	colle = map->collectibles;
-	exit = map->exit;
+	exitt = map->exit;
 	flood_fill(cpy_map, map->player_x, map->player_y, map);
 	if (map->collectibles > 0 || map->exit > 0)
 	{
 		free_map(cpy_map);
-		printf("%d\n",map->exit);
-		handle_error(map, "Not all collectibles or exit are reachable", 0);
+		free_map(map->grid);
+		ft_putendl_fd("Error", 2);
+		if (map->collectibles > 0)
+			ft_putendl_fd("Not all collectibles are reachable", 2);
+		if (map->exit > 0)
+			ft_putendl_fd("the exit is not reachable", 2);
+		exit(0);
 	}
 	map->collectibles = colle;
-	map->exit = exit;
+	map->exit = exitt;
 	free_map(cpy_map);
 }

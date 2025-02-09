@@ -1,17 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   render_bonus.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/05 20:51:08 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/06 21:18:13 by sel-maaq         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+
 
 #include "so_long_bonus.h"
-
 
 void	init_game(t_game *game, t_map *map)
 {
@@ -27,33 +16,25 @@ void	load_images(t_game *game, t_map *map)
 {
 	int (w), (h);
 	game->img_wall = mlx_xpm_file_to_image(game->mlx,
-			"assets/wall2.xpm", &w, &h);
+		"assets/wall2.xpm", &w, &h);
 	game->img_player = mlx_xpm_file_to_image(game->mlx,
-			"assets/new_player2.xpm", &w, &h);
+		"assets/player2.xpm", &w, &h);
 	game->img_collect = mlx_xpm_file_to_image(game->mlx,
-			"assets/new_collectible2.xpm", &w, &h);
+		"assets/collectible2.xpm", &w, &h);
 	game->img_exit = mlx_xpm_file_to_image(game->mlx,
-			"assets/exit2.xpm", &w, &h);
+		"assets/exit2.xpm", &w, &h);
 	game->img_mid_exit = mlx_xpm_file_to_image(game->mlx,
-			"assets/exit_player2.xpm", &w, &h);
+		"assets/exit_player2.xpm", &w, &h);
 	game->img_floor = mlx_xpm_file_to_image(game->mlx,
-			"assets/floor2.xpm", &w, &h);
+		"assets/floor2.xpm", &w, &h);
 	game->img_enemy = mlx_xpm_file_to_image(game->mlx,
-			"assets/killer.xpm", &w, &h);
-	if (!game->img_player)
-		handle_error(map, "error loading wall sprite", 0);
-	else if (!game->img_player)
-		handle_error(map, "error loading player sprite", 0);
-	else if (!game->img_collect)
-		handle_error(map, "error loading collectible sprite", 0);
-	else if (!game->img_exit)
-		handle_error(map, "error loading exit sprite", 0);
-	else if (!game->img_mid_exit)
-		handle_error(map, "error loading mid exit sprite", 0);
-	else if (!game->img_floor)
-		handle_error(map, "error loading floor sprite", 0);
-	else if (!game->img_enemy)
-		handle_error(map, "error loading enemy sprite", 0);
+		"assets/enemy.xpm", &w, &h);
+	game->img_lose = mlx_xpm_file_to_image(game->mlx,
+		"assets/lose_msg.xpm", &w, &h);
+	if (!game->img_wall || !game->img_lose || !game->img_exit
+		|| !game->img_enemy || !game->img_collect || !game->img_player
+		|| !game->img_mid_exit || !game->img_floor)
+		handle_error(map, "error loading a sprite", 0);
 }
 
 void	put_image(t_game *game, void *img, int x, int y)
@@ -89,20 +70,21 @@ void	render_map(t_game *game, int y, int x)
 	}
 	render_moves(game, game->map);
 }
+
 void	render_moves(t_game *game, t_map *map)
 {
 	char	*tmp;
 
 	tmp = ft_itoa(game->moves);
 	mlx_string_put(game->mlx, game->win,
-			map->width / 2 * TILE_SIZE - 25, 25, 9495366, "TOTAL MOVES : ");
+		map->width / 2 * TILE_SIZE - 25, 25, 16777215, "TOTAL MOVES : ");
 	mlx_string_put(game->mlx, game->win,
-			map->width / 2 * TILE_SIZE + 60, 25, 9495366, tmp);
+		map->width / 2 * TILE_SIZE + 60, 25, 16777215, tmp);
 	free(tmp);
-	tmp = ft_itoa(game->collected);
+	tmp = ft_itoa(game->map->collectibles - game->collected);
 	mlx_string_put(game->mlx, game->win, map->width / 2 * TILE_SIZE - 25,
-			map->height * TILE_SIZE - 25, 9495366, "TOTAL COLLECTED : ");
+		map->height * TILE_SIZE - 25, 16777215, "COINS NEEDED : ");
 	mlx_string_put(game->mlx, game->win, map->width / 2 * TILE_SIZE + 85,
-			map->height * TILE_SIZE - 25, 9495366, tmp);
+		map->height * TILE_SIZE - 25, 16777215, tmp);
 	free(tmp);
 }

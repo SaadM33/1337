@@ -1,38 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   so_long_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/27 18:12:51 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/01/30 20:15:17 by el-maaq         ###   ########.fr       */
+/*   Created: 2025/02/09 21:59:57 by sel-maaq          #+#    #+#             */
+/*   Updated: 2025/02/09 21:59:58 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-
-void print_map(char **grid)
-{
-	int 	i = 0;
-	int		j = 0;
-
-	while (grid[i])
-	{
-		j = 0;
-		while (grid[i][j])
-		{
-			printf("%c", grid[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-	printf("\n");
-	// printf("y pos: %d\n", map->player_y);
-	// printf("x pos: %d\n", map->player_x);
-	// printf("\n");
-}
+#include "so_long_bonus.h"
 
 int	main(int argc, char **argv)
 {
@@ -50,6 +28,7 @@ int	main(int argc, char **argv)
 	validate_map(&map, argv[1]);
 	init_game(&game, &map);
 	load_images(&game, &map);
+	play_sound("assets/music.wav");
 	render_map(&game, 0, 0);
 	mlx_hook(game.win, 2, 1L << 0, handle_key, &game);
 	mlx_hook(game.win, 17, 0, close_window, &game);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/04 22:14:35 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/01/04 22:14:35 by sel-maaq         ###   ########.fr       */
+/*   Created: 2025/02/09 21:41:22 by sel-maaq          #+#    #+#             */
+/*   Updated: 2025/02/09 21:41:22 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_game
 	void	*img_enemy;
 	void    *img_floor;
 	void	*img_mid_exit;
+	void	*img_lose;
 	int     moves;
 	int     collected;
 }   t_game;
@@ -79,5 +80,5 @@ void	free_map(char **map);
 int		close_window(t_game *game);
 void	handle_error(t_map *map, char *str, int fd);
 
-
+void	play_sound(const char *sound_file);
 #endif

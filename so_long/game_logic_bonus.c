@@ -1,14 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   game_logic_bonus.c                                 :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/05 19:12:53 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/06 21:06:32 by sel-maaq         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+
 
 #include "so_long_bonus.h"
 #include <X11/keysym.h>
@@ -31,29 +21,26 @@ int	handle_key(int keycode, t_game *game)
 	else if (keycode == XK_s || keycode == XK_Down)
 		move_player(game, game->map, x, y + 1);
 	else if (keycode == XK_q)
-	{
-		y = 0;
-		while (game->map->grid[y])
-		{
-			x = 0;
-			while (game->map->grid[y][x])
-			{
-				mlx_string_put(game->mlx, game->win, x*TILE_SIZE, y*TILE_SIZE, 0, "NIGGERS");
-				x++;
-			}
-			y++;
-		}
-	}
-		
+		play_sound("assets/dry-fart.wav");
 	return (1);
 }
 
 void	move_player(t_game *game, t_map *map, int new_x, int new_y)
 {
 	if (map->grid[new_y][new_x] == '1')
+	{
+		play_sound("assets/wall.wav");
 		return ;
+	}
 	else if (map->grid[new_y][new_x] == 'K')
+	{
+		mlx_put_image_to_window(game->mlx, game->win, game->img_mid_exit, map->width * TILE_SIZE /2-225, map->height * TILE_SIZE /2-170);
+		sleep(3);
+		system("pkill paplay");
+		play_sound("assets/lose.wav");
+		// sleep(1);
 		close_window(game);
+	}
 	if (map->grid[new_y][new_x] == 'E')
 	{
 		map->grid[new_y][new_x] = 'e';
@@ -67,16 +54,16 @@ void	move_player(t_game *game, t_map *map, int new_x, int new_y)
 	else
 	{
 		if (map->grid[new_y][new_x] == 'C')
-			game->collected++;
+			{game->collected++;play_sound("assets/pickup_sound.wav");}
 		if (map->grid[map->player_y][map->player_x] == 'e')
 			map->grid[map->player_y][map->player_x] = 'E';
 		else
 			map->grid[map->player_y][map->player_x] = '0';
 		map->grid[new_y][new_x] = 'P';
 	}
-	printf("Moves: %d\n", ++game->moves);
 	fill_player_pos(map);
 	render_map(game, 0, 0);
+	game->moves++;
 }
 
 int	close_window(t_game *game)
@@ -89,8 +76,18 @@ int	close_window(t_game *game)
 	mlx_destroy_image(game->mlx, game->img_player);
 	mlx_destroy_image(game->mlx, game->img_wall);
 	mlx_destroy_image(game->mlx, game->img_enemy);
+	mlx_destroy_image(game->mlx, game->img_lose);
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
+	system("pkill paplay");
 	exit(0);
+}
+
+void	play_sound(const char *sound_file)
+{
+	char	command[256];
+
+	snprintf(command, sizeof(command), "paplay %s &", sound_file);
+	system(command);
 }
