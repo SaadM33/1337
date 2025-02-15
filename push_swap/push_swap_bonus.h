@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#ifndef PUSH_SWAP_BONUS_H
+# define PUSH_SWAP_BONUS_H
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -67,5 +67,5 @@ int		find_median(t_stack *stack);
 void	sort_array(int *arr, int size);
 
 void	execute_inst(char *op, t_stack **stack_a, t_stack **stack_b);
-
+void	execute_inst_extra(char *op, t_stack **a, t_stack **b);
 #endif

@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render_bonus.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/12 17:41:08 by sel-maaq          #+#    #+#             */
+/*   Updated: 2025/02/12 21:44:22 by sel-maaq         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
@@ -16,24 +26,26 @@ void	load_images(t_game *game, t_map *map)
 {
 	int (w), (h);
 	game->img_wall = mlx_xpm_file_to_image(game->mlx,
-		"assets/wall2.xpm", &w, &h);
+			"assets/wall2.xpm", &w, &h);
 	game->img_player = mlx_xpm_file_to_image(game->mlx,
-		"assets/player2.xpm", &w, &h);
+			"assets/player2.xpm", &w, &h);
 	game->img_collect = mlx_xpm_file_to_image(game->mlx,
-		"assets/collectible2.xpm", &w, &h);
+			"assets/col00.xpm", &w, &h);
 	game->img_exit = mlx_xpm_file_to_image(game->mlx,
-		"assets/exit2.xpm", &w, &h);
+			"assets/exit2.xpm", &w, &h);
 	game->img_mid_exit = mlx_xpm_file_to_image(game->mlx,
-		"assets/exit_player2.xpm", &w, &h);
+			"assets/exit_player2.xpm", &w, &h);
 	game->img_floor = mlx_xpm_file_to_image(game->mlx,
-		"assets/floor2.xpm", &w, &h);
+			"assets/floor2.xpm", &w, &h);
 	game->img_enemy = mlx_xpm_file_to_image(game->mlx,
-		"assets/enemy.xpm", &w, &h);
+			"assets/enemy.xpm", &w, &h);
+	game->img_win = mlx_xpm_file_to_image(game->mlx,
+			"assets/win_msg.xpm", &w, &h);
 	game->img_lose = mlx_xpm_file_to_image(game->mlx,
-		"assets/lose_msg.xpm", &w, &h);
+			"assets/lose_msg.xpm", &w, &h);
 	if (!game->img_wall || !game->img_lose || !game->img_exit
 		|| !game->img_enemy || !game->img_collect || !game->img_player
-		|| !game->img_mid_exit || !game->img_floor)
+		|| !game->img_mid_exit || !game->img_floor || !game->img_win)
 		handle_error(map, "error loading a sprite", 0);
 }
 
@@ -77,13 +89,13 @@ void	render_moves(t_game *game, t_map *map)
 
 	tmp = ft_itoa(game->moves);
 	mlx_string_put(game->mlx, game->win,
-		map->width / 2 * TILE_SIZE - 25, 25, 16777215, "TOTAL MOVES : ");
+		map->width / 2 * TILE_SIZE - 25, 25, 16247616, "TOTAL MOVES : ");
 	mlx_string_put(game->mlx, game->win,
 		map->width / 2 * TILE_SIZE + 60, 25, 16777215, tmp);
 	free(tmp);
 	tmp = ft_itoa(game->map->collectibles - game->collected);
 	mlx_string_put(game->mlx, game->win, map->width / 2 * TILE_SIZE - 25,
-		map->height * TILE_SIZE - 25, 16777215, "COINS NEEDED : ");
+		map->height * TILE_SIZE - 25, 16247616, "COINS NEEDED : ");
 	mlx_string_put(game->mlx, game->win, map->width / 2 * TILE_SIZE + 85,
 		map->height * TILE_SIZE - 25, 16777215, tmp);
 	free(tmp);

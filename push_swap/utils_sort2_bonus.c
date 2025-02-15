@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_sort2.c                                      :+:      :+:    :+:   */
+/*   utils_sort2_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 22:13:57 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/14 21:55:07 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/02/14 21:39:46 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 t_stack	*find_smallest(t_stack *a)
 {
@@ -79,8 +79,6 @@ void	push_all_save_three(t_stack **stack_a, t_stack **stack_b)
 	pushed = 0;
 	while (stack_size > 3 && pushed < stack_size / 2)
 	{
-		if (get_stack_size(*stack_a) <= 5)
-			break ;
 		if ((*stack_a)->value <= mid_value)
 		{
 			do_op("pb", stack_a, stack_b);

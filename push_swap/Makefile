@@ -1,10 +1,11 @@
 NAME = push_swap
 BONUS = checker
 CC = gcc
-CFLAGS = -g -Wall -Werror -Wextra
+CFLAGS =  -g -Wall -Werror -Wextra
 
 SRCS = 1-rev_rotate.c  2-rotate_push.c  3-swap.c  main.c  sort_algo.c  utils_input.c  utils_input2.c  utils_sort2.c  utils_sort.c
-SRCS_BONUS = checker_bonus.c get_next_line.c get_next_line_utils.c 1-rev_rotate.c  2-rotate_push.c  3-swap.c  sort_algo.c  utils_input.c  utils_input2.c  utils_sort2.c  utils_sort.c
+SRCS_BONUS = 1-rev_rotate_bonus.c  2-rotate_push_bonus.c  3-swap_bonus.c  checker_bonus.c  utils_input2_bonus.c  utils_input_bonus.c \
+			utils_sort2_bonus.c  utils_sort_bonus.c get_next_line.c get_next_line_utils.c 
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 23:56:05 by sel-maaq          #+#    #+#             */
-/*   Updated: 2024/11/09 00:02:37 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/02/11 19:02:16 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-char	*get_next_line(int fd);
+char	*get_next_line(int fd, int i);
 char	*check_newline(char *str);
 char	*extract_line_reload(char **save, char *newL_ptr);
 char	*read_n_save(int fd, char *save, char	*buffer);

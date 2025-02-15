@@ -14,13 +14,16 @@
 
 void	sort_turk(t_stack **a, t_stack **b)
 {
+	t_stack	*cheapest;
+
 	push_all_save_three(a, b);
 	tiny_sort(a, b);
 	while (*b)
 	{
 		find_targets(*a, *b);
 		fill_costs(*a, *b);
-		move_cheapest(a, b);
+		cheapest = find_cheapest_move(*b);
+		move_cheapest(a, b, cheapest);
 	}
 	if (!is_sorted(*a))
 		shift_stack(a, b);
@@ -92,13 +95,11 @@ void	fill_costs(t_stack *a, t_stack *b)
 	}
 }
 
-void	move_cheapest(t_stack **a, t_stack **b)
+void	move_cheapest(t_stack **a, t_stack **b, t_stack	*cheapest)
 {
-	t_stack	*cheapest;
 	int		cost_a;
 	int		cost_b;
 
-	cheapest = find_cheapest_move(*b);
 	cost_b = cheapest->cost;
 	cost_a = cheapest->target->cost;
 	while (cost_a > 0 && cost_b > 0 && cost_a-- && cost_b--)

@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   game_logic_bonus.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/12 22:24:49 by sel-maaq          #+#    #+#             */
+/*   Updated: 2025/02/15 14:30:50 by sel-maaq         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "so_long_bonus.h"
 #include <X11/keysym.h>
@@ -22,6 +32,7 @@ int	handle_key(int keycode, t_game *game)
 		move_player(game, game->map, x, y + 1);
 	else if (keycode == XK_q)
 		play_sound("assets/dry-fart.wav");
+	render_map(game, 0, 0);
 	return (1);
 }
 
@@ -62,7 +73,6 @@ void	move_player(t_game *game, t_map *map, int new_x, int new_y)
 		map->grid[new_y][new_x] = 'P';
 	}
 	fill_player_pos(map);
-	render_map(game, 0, 0);
 	game->moves++;
 }
 
@@ -77,17 +87,10 @@ int	close_window(t_game *game)
 	mlx_destroy_image(game->mlx, game->img_wall);
 	mlx_destroy_image(game->mlx, game->img_enemy);
 	mlx_destroy_image(game->mlx, game->img_lose);
+	mlx_destroy_image(game->mlx, game->img_win);
 	mlx_destroy_window(game->mlx, game->win);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
 	system("pkill paplay");
 	exit(0);
-}
-
-void	play_sound(const char *sound_file)
-{
-	char	command[256];
-
-	snprintf(command, sizeof(command), "paplay %s &", sound_file);
-	system(command);
 }

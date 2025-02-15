@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 21:59:57 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/09 21:59:58 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/02/14 22:45:45 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,14 @@ int	main(int argc, char **argv)
 	mlx_hook(game.win, 17, 0, close_window, &game);
 	mlx_loop(game.mlx);
 	return (0);
+}
+
+void	play_sound(const char *sound_file)
+{
+	char	command[256];
+
+	snprintf(command, sizeof(command), "paplay %s &", sound_file);
+	system(command);
 }
 
 void	free_map(char **map)
