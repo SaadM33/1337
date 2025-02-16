@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 21:59:57 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/16 15:58:32 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/02/16 17:45:47 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,14 @@ int	main(int argc, char **argv)
 
 void	play_sound(const char *sound_file)
 {
-	char	command[256];
+	char	*command;
+	char	*tmp;
 
-	snprintf(command, sizeof(command), "paplay %s &", sound_file);
+	tmp = ft_strjoin("paplay ", sound_file);
+	command = ft_strjoin(tmp, " &");
+	free(tmp);
 	system(command);
+	free(command);
 }
 
 void	free_map(char **map)

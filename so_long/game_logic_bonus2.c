@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 22:13:15 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/16 16:07:37 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/02/16 17:48:10 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,20 @@ void	handle_victory(t_game *game, t_map *map)
 
 void	handle_game_over(t_game *game, t_map *map)
 {
+	int	x;
+	int	y;
+
+	y = 0;
+	while (game->map->grid[y])
+	{
+		x = 0;
+		while (game->map->grid[y][x])
+		{
+			put_image(game, game->img_enemy, x, y);
+			x++;
+		}
+		y++;
+	}
 	mlx_put_image_to_window(game->mlx, game->win, game->img_lose,
 		map->width * TILE_SIZE / 2 - 225,
 		map->height * TILE_SIZE / 2 - 170);

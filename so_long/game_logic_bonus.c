@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 22:24:49 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/16 17:21:11 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/02/16 17:30:34 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	move_player(t_game *game, t_map *map, int new_x, int new_y)
 	if (map->grid[new_y][new_x] == 'K')
 	{
 		handle_game_over(game, map);
-		return ;
 	}
 	if (map->grid[new_y][new_x] == 'E')
 	{
@@ -52,7 +51,6 @@ void	move_player(t_game *game, t_map *map, int new_x, int new_y)
 		if (game->collected == map->collectibles)
 		{
 			handle_victory(game, map);
-			return ;
 		}
 	}
 	else
