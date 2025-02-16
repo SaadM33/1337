@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 16:25:45 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/09 02:32:33 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/02/16 16:29:49 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	load_images(t_game *game, t_map *map)
 	game->img_wall = mlx_xpm_file_to_image(game->mlx,
 			"assets/wall2.xpm", &w, &h);
 	game->img_player = mlx_xpm_file_to_image(game->mlx,
-			"assets/new_player2.xpm", &w, &h);
+			"assets/player2.xpm", &w, &h);
 	game->img_collect = mlx_xpm_file_to_image(game->mlx,
-			"assets/new_collectible2.xpm", &w, &h);
+			"assets/collectible2.xpm", &w, &h);
 	game->img_exit = mlx_xpm_file_to_image(game->mlx,
 			"assets/exit2.xpm", &w, &h);
 	game->img_mid_exit = mlx_xpm_file_to_image(game->mlx,

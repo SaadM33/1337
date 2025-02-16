@@ -31,16 +31,16 @@ typedef struct s_map
 	int		player;
 	int		player_x;
 	int		player_y;
-}t_map;
+}	t_map;
 
 typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
 	t_map	*map;
+	void	*frames_coll[7];
 	void	*img_wall;
 	void	*img_player;
-	void	*img_collect;
 	void	*img_exit;
 	void	*img_enemy;
 	void	*img_floor;
@@ -68,19 +68,24 @@ void	print_map(char **grid);
 
 // Game initialization
 void	init_game(t_game *game, t_map *map);
-void	load_images(t_game *game, t_map *map);
+void	load_images(t_game *game);
 void	render_map(t_game *game, int y, int x);
 void	render_moves(t_game *game, t_map *map);
+int		animate_coll(t_game *game);
 void	put_image(t_game *game, void *img, int x, int y);
 
 // Game logic
 int		handle_key(int keycode, t_game *game);
 void	move_player(t_game *game, t_map *map, int new_x, int new_y);
+void	update_player_position(t_game *game, t_map *map, int new_x, int new_y);
+void	handle_victory(t_game *game, t_map *map);
+void	handle_game_over(t_game *game, t_map *map);
 
 // Cleanup
 void	free_map(char **map);
 int		close_window(t_game *game);
 void	handle_error(t_map *map, char *str, int fd);
+void	free_frames_col(t_game *game);
 
 void	play_sound(const char *sound_file);
 #endif

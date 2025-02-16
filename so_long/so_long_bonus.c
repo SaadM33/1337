@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 21:59:57 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/14 22:45:45 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/02/16 15:58:32 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@ int	main(int argc, char **argv)
 		return (1);
 	validate_map(&map, argv[1]);
 	init_game(&game, &map);
-	load_images(&game, &map);
+	load_images(&game);
 	play_sound("assets/music.wav");
 	render_map(&game, 0, 0);
 	mlx_hook(game.win, 2, 1L << 0, handle_key, &game);
 	mlx_hook(game.win, 17, 0, close_window, &game);
+	mlx_loop_hook(game.mlx, animate_coll, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }

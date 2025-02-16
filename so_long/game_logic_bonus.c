@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 22:24:49 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/15 14:30:50 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/02/16 17:21:11 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,11 @@ int	handle_key(int keycode, t_game *game)
 void	move_player(t_game *game, t_map *map, int new_x, int new_y)
 {
 	if (map->grid[new_y][new_x] == '1')
+		return (play_sound("assets/wall.wav"));
+	if (map->grid[new_y][new_x] == 'K')
 	{
-		play_sound("assets/wall.wav");
+		handle_game_over(game, map);
 		return ;
-	}
-	else if (map->grid[new_y][new_x] == 'K')
-	{
-		mlx_put_image_to_window(game->mlx, game->win, game->img_mid_exit, map->width * TILE_SIZE /2-225, map->height * TILE_SIZE /2-170);
-		sleep(3);
-		system("pkill paplay");
-		play_sound("assets/lose.wav");
-		// sleep(1);
-		close_window(game);
 	}
 	if (map->grid[new_y][new_x] == 'E')
 	{
@@ -58,37 +51,58 @@ void	move_player(t_game *game, t_map *map, int new_x, int new_y)
 		map->grid[map->player_y][map->player_x] = '0';
 		if (game->collected == map->collectibles)
 		{
-			render_map(game, 0, 0);
-			close_window(game);
+			handle_victory(game, map);
+			return ;
 		}
 	}
 	else
 	{
-		if (map->grid[new_y][new_x] == 'C')
-			{game->collected++;play_sound("assets/pickup_sound.wav");}
-		if (map->grid[map->player_y][map->player_x] == 'e')
-			map->grid[map->player_y][map->player_x] = 'E';
-		else
-			map->grid[map->player_y][map->player_x] = '0';
-		map->grid[new_y][new_x] = 'P';
+		update_player_position(game, map, new_x, new_y);
 	}
 	fill_player_pos(map);
+	render_map(game, 0, 0);
 	game->moves++;
+}
+
+int	animate_coll(t_game *game)
+{
+	static int	frame = 0;
+	char		**grid;
+
+	int (i), (j), (counter);
+	grid = game->map->grid;
+	i = 0;
+	while (grid[i])
+	{
+		j = 0;
+		while (grid[i][j])
+		{
+			if (grid[i][j] == 'C')
+				put_image(game, game->frames_coll[frame], j, i);
+			j++;
+		}
+		i++;
+	}
+	counter = 0;
+	while (counter < 7000000)
+		counter++;
+	frame = (frame + 1) % 7;
+	return (0);
 }
 
 int	close_window(t_game *game)
 {
+	mlx_destroy_window(game->mlx, game->win);
 	free_map(game->map->grid);
-	mlx_destroy_image(game->mlx, game->img_collect);
-	mlx_destroy_image(game->mlx, game->img_exit);
+	free_frames_col(game);
 	mlx_destroy_image(game->mlx, game->img_mid_exit);
 	mlx_destroy_image(game->mlx, game->img_floor);
 	mlx_destroy_image(game->mlx, game->img_player);
-	mlx_destroy_image(game->mlx, game->img_wall);
 	mlx_destroy_image(game->mlx, game->img_enemy);
 	mlx_destroy_image(game->mlx, game->img_lose);
 	mlx_destroy_image(game->mlx, game->img_win);
-	mlx_destroy_window(game->mlx, game->win);
+	mlx_destroy_image(game->mlx, game->img_exit);
+	mlx_destroy_image(game->mlx, game->img_wall);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
 	system("pkill paplay");

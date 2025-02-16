@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 17:41:08 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/12 21:44:22 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/02/16 16:30:44 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,33 @@ void	init_game(t_game *game, t_map *map)
 	game->collected = 0;
 }
 
-void	load_images(t_game *game, t_map *map)
+void	load_frames_col(t_game *game)
 {
 	int (w), (h);
-	game->img_wall = mlx_xpm_file_to_image(game->mlx,
-			"assets/wall2.xpm", &w, &h);
+	game->frames_coll[0] = mlx_xpm_file_to_image(game->mlx,
+			"assets/col00.xpm", &w, &h);
+	game->frames_coll[1] = mlx_xpm_file_to_image(game->mlx,
+			"assets/col01.xpm", &w, &h);
+	game->frames_coll[2] = mlx_xpm_file_to_image(game->mlx,
+			"assets/col02.xpm", &w, &h);
+	game->frames_coll[3] = mlx_xpm_file_to_image(game->mlx,
+			"assets/col03.xpm", &w, &h);
+	game->frames_coll[4] = mlx_xpm_file_to_image(game->mlx,
+			"assets/col04.xpm", &w, &h);
+	game->frames_coll[5] = mlx_xpm_file_to_image(game->mlx,
+			"assets/col05.xpm", &w, &h);
+	game->frames_coll[6] = mlx_xpm_file_to_image(game->mlx,
+			"assets/col06.xpm", &w, &h);
+}
+
+void	load_images(t_game *game)
+{
+	int (w), (h);
+	load_frames_col(game);
 	game->img_player = mlx_xpm_file_to_image(game->mlx,
 			"assets/player2.xpm", &w, &h);
-	game->img_collect = mlx_xpm_file_to_image(game->mlx,
-			"assets/col00.xpm", &w, &h);
+	game->img_wall = mlx_xpm_file_to_image(game->mlx,
+			"assets/wall2.xpm", &w, &h);
 	game->img_exit = mlx_xpm_file_to_image(game->mlx,
 			"assets/exit2.xpm", &w, &h);
 	game->img_mid_exit = mlx_xpm_file_to_image(game->mlx,
@@ -43,16 +61,6 @@ void	load_images(t_game *game, t_map *map)
 			"assets/win_msg.xpm", &w, &h);
 	game->img_lose = mlx_xpm_file_to_image(game->mlx,
 			"assets/lose_msg.xpm", &w, &h);
-	if (!game->img_wall || !game->img_lose || !game->img_exit
-		|| !game->img_enemy || !game->img_collect || !game->img_player
-		|| !game->img_mid_exit || !game->img_floor || !game->img_win)
-		handle_error(map, "error loading a sprite", 0);
-}
-
-void	put_image(t_game *game, void *img, int x, int y)
-{
-	mlx_put_image_to_window(game->mlx, game->win, img,
-		x * TILE_SIZE, y * TILE_SIZE);
 }
 
 void	render_map(t_game *game, int y, int x)
@@ -66,8 +74,6 @@ void	render_map(t_game *game, int y, int x)
 				put_image(game, game->img_floor, x, y);
 			else if (game->map->grid[y][x] == '1')
 				put_image(game, game->img_wall, x, y);
-			else if (game->map->grid[y][x] == 'C')
-				put_image(game, game->img_collect, x, y);
 			else if (game->map->grid[y][x] == 'P')
 				put_image(game, game->img_player, x, y);
 			else if (game->map->grid[y][x] == 'E')

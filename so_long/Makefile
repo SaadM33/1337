@@ -5,7 +5,7 @@ CFLAGS =  -g -Wall -Werror -Wextra
 X11FLAGS = -lXext -lX11 -lm
 
 SRCS = so_long.c map_parser.c validation.c validation2.c render.c game_logic.c
-SRCS_BONUS = game_logic_bonus.c  map_parser_bonus.c  render_bonus.c  so_long_bonus.c validation2_bonus.c  validation_bonus.c
+SRCS_BONUS = game_logic_bonus.c game_logic_bonus2.c  map_parser_bonus.c  render_bonus.c  so_long_bonus.c validation2_bonus.c  validation_bonus.c
 
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
@@ -25,7 +25,7 @@ clearscr:
 
 
 $(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(X11FLAGS) $(OBJS) $(LIBFT) minilibx-linux/libmlx* -o $@
+	$(CC) $(CFLAGS) $(X11FLAGS) $(OBJS) $(LIBFT) /usr/include/minilibx-linux/libmlx.a -o $@
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -46,6 +46,6 @@ re: fclean all
 bonus: $(BONUS)
 
 $(BONUS): $(OBJS_BONUS) $(LIBFT)
-	$(CC) $(CFLAGS)$(X11FLAGS) $(OBJS_BONUS) $(LIBFT) minilibx-linux/libmlx* -o $(BONUS)
+	$(CC) $(CFLAGS)$(X11FLAGS) $(OBJS_BONUS) $(LIBFT) /usr/include/minilibx-linux/libmlx.a -o $(BONUS)
 
 .PHONY: all clean fclean re bonus
