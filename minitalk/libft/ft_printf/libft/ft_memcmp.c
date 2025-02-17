@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 11:26:59 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/17 16:09:31 by sel-maaq         ###   ########.fr       */
+/*   Created: 2024/10/23 10:23:34 by sel-maaq          #+#    #+#             */
+/*   Updated: 2024/10/28 00:37:51 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	size_t	i;
+	const char	*str1;
+	const char	*str2;
+	size_t		i;
 
+	if (n == 0)
+		return (0);
+	str1 = (const char *)s1;
+	str2 = (const char *)s2;
 	i = 0;
-	if (dstsize == 0)
-		return (ft_strlen(src));
-	while (i < (dstsize - 1) && src[i] != '\0')
-	{
-		dst[i] = src[i];
+	while ((i < n) && str1[i] == str2[i])
 		i++;
-	}
-	dst[i] = '\0';
-	return (ft_strlen(src));
+	if (i == n)
+		return (0);
+	return ((unsigned char)str1[i] - (unsigned char)str2[i]);
 }

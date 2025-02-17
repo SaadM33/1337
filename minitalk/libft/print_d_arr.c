@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   print_d_arr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 11:26:59 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/17 16:09:31 by sel-maaq         ###   ########.fr       */
+/*   Created: 2025/02/17 16:57:53 by sel-maaq          #+#    #+#             */
+/*   Updated: 2025/02/17 17:01:41 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+void	print_map(char **arr)
 {
-	size_t	i;
+	int		i;
+	int		j;
 
 	i = 0;
-	if (dstsize == 0)
-		return (ft_strlen(src));
-	while (i < (dstsize - 1) && src[i] != '\0')
+	j = 0;
+	while (arr[i])
 	{
-		dst[i] = src[i];
+		j = 0;
+		while (arr[i][j])
+		{
+			ft_printf("%c", arr[i][j]);
+			j++;
+		}
+		ft_printf("\n");
 		i++;
 	}
-	dst[i] = '\0';
-	return (ft_strlen(src));
+	ft_printf("\n");
 }
