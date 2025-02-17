@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/17 15:35:50 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/17 16:08:05 by sel-maaq         ###   ########.fr       */
+/*   Created: 2024/10/22 10:12:02 by sel-maaq          #+#    #+#             */
+/*   Updated: 2024/10/23 23:36:12 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+size_t	ft_strlen(const char *str)
 {
-	
+	size_t	i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }

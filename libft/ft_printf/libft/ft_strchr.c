@@ -1,18 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/17 15:35:50 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/17 16:08:05 by sel-maaq         ###   ########.fr       */
+/*   Created: 2024/10/22 23:11:11 by sel-maaq          #+#    #+#             */
+/*   Updated: 2024/11/06 15:03:54 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+char	*ft_strchr(const char *s, int c)
 {
-	
+	int	i;
+
+	i = 0;
+	if (c == '\0')
+	{
+		i = ft_strlen(s);
+		return ((char *)s + i);
+	}
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			return ((char *)s + i);
+		i++;
+	}
+	return (NULL);
 }

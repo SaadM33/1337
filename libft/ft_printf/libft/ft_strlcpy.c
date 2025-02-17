@@ -1,18 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/17 15:35:50 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/17 16:08:05 by sel-maaq         ###   ########.fr       */
+/*   Created: 2024/10/22 11:26:59 by sel-maaq          #+#    #+#             */
+/*   Updated: 2024/10/27 16:17:18 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	
+	size_t	i;
+
+	i = 0;
+	if (dstsize == 0)
+		return (ft_strlen(src));
+	while (i < (dstsize - 1) && src[i] != '\0')
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (ft_strlen(src));
 }

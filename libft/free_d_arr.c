@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   free_d_arr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/17 15:35:50 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/17 16:08:05 by sel-maaq         ###   ########.fr       */
+/*   Created: 2025/02/17 16:54:25 by sel-maaq          #+#    #+#             */
+/*   Updated: 2025/02/17 16:55:06 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+void	free_d_arr(char **arr)
 {
-	
+	int	i;
+
+	i = 0;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
 }

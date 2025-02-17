@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/17 15:35:50 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/17 16:08:05 by sel-maaq         ###   ########.fr       */
+/*   Created: 2024/10/22 00:06:14 by sel-maaq          #+#    #+#             */
+/*   Updated: 2024/10/28 00:46:31 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+int	ft_isalnum(int c)
 {
-	
+	if (ft_isdigit(c) || ft_isalpha(c))
+		return (1);
+	return (0);
 }

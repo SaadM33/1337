@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 23:05:35 by sel-maaq          #+#    #+#             */
-/*   Updated: 2024/11/15 22:37:01 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/02/17 17:00:39 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@
 # define BUFFER_SIZE 42
 #endif
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, int i)
 {
 	char		*buffer;
 	static char	*save[1024];
 	char		*res;
 
+	if (i == 1)
+		return (free(save[fd]), NULL);
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer = malloc(BUFFER_SIZE + 1);

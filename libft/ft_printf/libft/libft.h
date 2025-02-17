@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 23:39:47 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/17 16:56:29 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2024/11/20 17:23:31 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include <stddef.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include "get_next_line_bonus.h"
-# include "ft_printf/ft_printf.h"
 
 /* ---------------	LISTS		--------------- */
 typedef struct s_list
@@ -66,10 +64,8 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
-
-/* ---------------   2D ARRAY   --------------- */
-void	print_d_arr(char **arr);
-void	free_d_arr(char **arr);
+int		ft_putstr(char *str);
+int		ft_putchar(int c);
 
 /* ---------------	MEMORY		--------------- */
 void	*ft_memset(void *b, int c, size_t len);

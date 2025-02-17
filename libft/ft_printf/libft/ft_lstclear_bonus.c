@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/17 15:35:50 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/17 16:08:05 by sel-maaq         ###   ########.fr       */
+/*   Created: 2024/10/26 18:03:08 by sel-maaq          #+#    #+#             */
+/*   Updated: 2024/10/26 18:51:04 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	
+	t_list	*current;
+	t_list	*next;
+
+	if (!lst || !del)
+		return ;
+	current = *lst;
+	while (current)
+	{
+		next = current->next;
+		del(current->content);
+		free(current);
+		current = next;
+	}
+	*lst = NULL;
 }
