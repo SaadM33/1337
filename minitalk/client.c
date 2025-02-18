@@ -6,13 +6,13 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 11:23:25 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/17 18:38:30 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/02/18 09:48:10 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int	main(int ac, char **av)
+int	main(/* int ac, char **av */)
 {
 	
 }

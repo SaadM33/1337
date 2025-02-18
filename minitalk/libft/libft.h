@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 23:39:47 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/17 16:56:29 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:34:07 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 
 /* ---------------   FILE DESCRIPTORS   --------------- */
+int		ft_putchar(int c);
+int		ft_putstr(char *str);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
