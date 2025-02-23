@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 18:57:03 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/23 18:17:01 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/02/23 22:09:44 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	msg_to_signal(unsigned char c, int pid)
 	i = 7;
 	while (i >= 0)
 	{
+		usleep(200);
 		if ((c >> i) & 1)
 		{
 			kill(pid, SIGUSR2);
@@ -33,7 +34,6 @@ void	msg_to_signal(unsigned char c, int pid)
 			kill(pid, SIGUSR1);
 		}
 		pause();
-		// usleep(300);
 		i--;
 	}
 }
