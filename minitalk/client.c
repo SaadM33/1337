@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 11:23:25 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/21 18:53:50 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/02/23 16:31:25 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	main(int ac, char **av)
 		ft_printf("Error: Invalid PID\n");
 		return (1);
 	}
-	
 	i = 0;
 	while (av[2][i])
 	{

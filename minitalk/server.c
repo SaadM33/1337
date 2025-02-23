@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 15:35:50 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/02/21 18:54:42 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/02/23 16:33:17 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	signal_to_msg(int sig)
 {
 	static unsigned char	n;
 	static unsigned int		i;
+
 	if (sig == SIGUSR1)
 		n = (n << 1) | 0;
 	else
@@ -43,7 +44,7 @@ int	main(int ac, char **av)
 	ft_printf("PID of the server is : %d\n", pid);
 	while (1)
 	{
-		signal(SIGUSR1, signal_to_msg);	
+		signal(SIGUSR1, signal_to_msg);
 		signal(SIGUSR2, signal_to_msg);
 		pause();
 	}

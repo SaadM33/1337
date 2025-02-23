@@ -31,14 +31,12 @@ void	signal_to_msg(int sig)
 
 int	main(int ac, char **av)
 {
-	int	pid;
+	struct sigaction	sa;
+	int					pid;
 
 	(void)av;
 	if (ac != 1)
-	{
-		ft_printf("Error, no arguments needed\n");
-		return (1);
-	}
+		return (ft_printf("Error, no arguments needed\n"), 1);
 	pid = getpid();
 	ft_printf("PID of the server is : %d\n", pid);
 	while (1)
@@ -47,4 +45,3 @@ int	main(int ac, char **av)
 		signal(SIGUSR2, signal_to_msg);
 		pause();
 	}
-}
