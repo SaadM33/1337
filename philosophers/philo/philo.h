@@ -7,7 +7,47 @@
 # include <stdio.h>
 # include <unistd.h>
 
+# define STR_USAGE	"usage: ./philo <number_of_philosophers> \
+<time_to_die> <time_to_eat> <time_to_sleep> \
+[number_of_times_each_philosopher_must_eat]\n"
 
 
+typedef struct s_info
+{
+	int				n_philo;
+	int				t_die;
+	int				t_eat;
+	int				t_sleep;
+	int				n_meals;
+	long			start_time;
+	int				sim_stop;
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	write_lock;
+}	t_info;
+
+typedef struct s_philo
+{
+	int		id;
+	int		n_eaten;
+	long	t_last_meal;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
+	t_info			*info;
+}	t_philo;
+
+
+
+
+long	get_time(void);
+
+
+int		validate_input(char **av);
+int		handle_input(t_info *info);
+
+void	init_info(char **av, t_info *info);
+
+
+int		ft_isdigit(int c);
+int		ft_atoi(const char *str);
 
 #endif

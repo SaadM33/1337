@@ -5,8 +5,7 @@ PTHREAD = -pthread
 NAME = philo
 BONUS = philo_bonus
 
-SRCS = main.c \
-		#  init.c  utils.c  routine.c   monitor.c  cleanup.c
+SRCS = main.c  utils.c utils_philo.c
 
 
 SRCS_BONUS = philo_bonus.c  init_bonus.c   utils_bonus.c  routine_bonus.c  monitor_bonus.c  cleanup_bonus.c
