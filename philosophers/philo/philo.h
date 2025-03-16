@@ -27,9 +27,10 @@ typedef struct s_info
 
 typedef struct s_philo
 {
-	int		id;
-	int		n_eaten;
-	long	t_last_meal;
+	pthread_t		thread;
+	int				id;
+	int				n_eaten;
+	long			t_last_meal;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 	t_info			*info;
@@ -38,16 +39,22 @@ typedef struct s_philo
 
 
 
-long	get_time(void);
 
 
 int		validate_input(char **av);
-int		handle_input(t_info *info);
 
 void	init_info(char **av, t_info *info);
+void	init_philo(t_info *info, t_philo **philos);
 
+
+
+
+long	get_time(void);
 
 int		ft_isdigit(int c);
 int		ft_atoi(const char *str);
+
+
+void	cleanup(t_info *info, t_philo *philos);
 
 #endif
