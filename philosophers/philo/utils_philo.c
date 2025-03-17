@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 00:27:14 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/03/14 23:26:04 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/03/17 01:05:15 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ long	get_time(void)
 
 void	ft_usleep(long time)
 {
-	time = get_time();
-	while (get_time() - time < time)
+	long	start;
+
+	start = get_time();
+	while (get_time() - start < time)
 		usleep(time / 10);
 }
 

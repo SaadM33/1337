@@ -50,6 +50,7 @@ void	init_philo(t_info *info, t_philo **philos);
 
 
 long	get_time(void);
+void	ft_usleep(long time);
 
 int		ft_isdigit(int c);
 int		ft_atoi(const char *str);
