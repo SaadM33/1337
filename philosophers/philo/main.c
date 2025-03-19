@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 13:39:16 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/03/17 02:06:06 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/03/19 02:21:20 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,26 +70,50 @@ void	print_center(char msg, t_philo *philo)
 		printf("%04ld %d is thinking\n", get_time() - philo->info->start_time, philo->id);
 	else if (msg == 'd')
 		printf("%04ld %d has died\n", get_time() - philo->info->start_time, philo->id);
-	pthread_mutex_unlock(&philo->info->write_lock);
+	else if (msg == 'a')
+	{
+		printf("%04ld %d has eaten enough and ascended to a higher lifeform\n", get_time() - philo->info->start_time, philo->id);
+		pthread_mutex_unlock(&philo->info->write_lock);
+		pthread_exit(NULL);	
+	}
+	pthread_mutex_unlock(&philo->info->write_lock);	
 }
 
-void	*routine(void *phil)
+void	*routine(void *tmp_ph)
 {
 	t_philo *philo;
 	t_info *info;
 
-	philo = (t_philo *)phil;
+	philo = (t_philo *)tmp_ph;
 	info = (t_info *)philo->info;
 	while (1)
 	{
-		pthread_mutex_lock(philo->left_fork);
-		print_center('f', philo);
-		pthread_mutex_lock(philo->right_fork);
-		print_center('f', philo);
+		if (philo->id != info->n_philo)
+		{
+			pthread_mutex_lock(philo->left_fork);
+			print_center('f', philo);
+			pthread_mutex_lock(philo->right_fork);
+			print_center('f', philo);
+		}
+		else
+		{
+			pthread_mutex_lock(philo->right_fork);
+			print_center('f', philo);
+			pthread_mutex_lock(philo->left_fork);
+			print_center('f', philo);
+		}
+		// pthread_mutex_lock(philo->left_fork);
+		// print_center('f', philo);
+		// pthread_mutex_lock(philo->right_fork);
+		// print_center('f', philo);
 		print_center('e', philo);
+		philo->t_last_meal = get_time();
 		ft_usleep(info->t_eat);
 		pthread_mutex_unlock(philo->left_fork);
 		pthread_mutex_unlock(philo->right_fork);
+		philo->n_eaten++;
+		if (info->n_meals != -1 && philo->n_eaten == info->n_meals)
+			print_center('a', philo);
 		print_center('s', philo);
 		ft_usleep(info->t_sleep);
 		print_center('t', philo);	
