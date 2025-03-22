@@ -11,15 +11,16 @@
 <time_to_die> <time_to_eat> <time_to_sleep> \
 [number_of_times_each_philosopher_must_eat]\n"
 
-#define RESET       "\033[0m"
-#define RED         "\033[31m"
-#define GREEN       "\033[32m"
-#define YELLOW      "\033[33m"
-#define BLUE        "\033[34m"
-#define MAGENTA     "\033[35m"
-#define WHITE       "\033[37m"
-#define BOLD        "\033[1m"
-#define UNDERLINE   "\033[4m"
+# define RESET       "\033[0m"
+# define RED         "\033[31m"
+# define GREEN       "\033[92m"
+# define YELLOW      "\033[33m"
+# define BLUE        "\033[34m"
+# define MAGENTA     "\033[35m"
+# define CYAN    	"\033[36m"
+# define WHITE       "\033[37m"
+# define BOLD        "\033[1m"
+# define UNLNE   	"\033[4m"
 
 typedef struct s_info
 {
@@ -30,8 +31,10 @@ typedef struct s_info
 	int				n_meals;
 	long			start_time;
 	int				sim_stop;
+	struct s_philo	*philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	write_lock;
+	pthread_mutex_t	sim_lock;
 }	t_info;
 
 typedef struct s_philo
@@ -46,25 +49,26 @@ typedef struct s_philo
 }	t_philo;
 
 
-
-
-
-
+// INPUT HANDLING
 int		validate_input(char **av);
-
-void	init_info(char **av, t_info *info);
-void	init_philo(t_info *info, t_philo **philos);
-
-
-
-
-long	get_time(void);
-void	ft_usleep(long time);
-
 int		ft_isdigit(int c);
 int		ft_atoi(const char *str);
 
+// initialisation
+void	init_info(char **av, t_info *info);
+void	init_philo(t_info *info, t_philo **philos);
+void	start_slaves(t_info *info, t_philo *philos);
 
-void	cleanup(t_info *info, t_philo *philos);
+// main functions
+void	*routine(void *tmp_ph);
+void	eat(t_philo *philo, t_info *info);
+void	*behold(void *tmp_info);
+void	print_handler(char msg, t_philo *philo);
+
+
+// helper stuff
+long	get_time(void);
+void	ft_usleep(long time);
+void	cleanup(t_info *info, t_philo *philos, pthread_t *old_one);
 
 #endif
