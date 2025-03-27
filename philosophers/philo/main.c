@@ -12,16 +12,6 @@
 
 #include "philo.h"
 
-int	check_stop(t_info *info)
-{
-	int	stop;
-
-	pthread_mutex_lock(&info->sim_lock);
-	stop = info->sim_stop;
-	pthread_mutex_unlock(&info->sim_lock);
-	return (stop);
-}
-
 void	*routine(void *tmp_ph)
 {
 	t_philo	*philo;
@@ -32,9 +22,9 @@ void	*routine(void *tmp_ph)
 	while (1)
 	{
 		eat(philo, info);
-		print_handler('s', philo);
-		ft_usleep(info->t_sleep);
-		print_handler('t', philo);
+		print_handler('s', philo, 0);
+		ft_usleep(info->t_sleep, info);
+		print_handler('t', philo, 0);
 	}
 	return (NULL);
 }
@@ -44,53 +34,60 @@ void	eat(t_philo *philo, t_info *info)
 	if (philo->id != info->n_philo)
 	{
 		pthread_mutex_lock(philo->left_fork);
-		print_handler('f', philo);
+		print_handler('f', philo, 1);
 		pthread_mutex_lock(philo->right_fork);
-		print_handler('f', philo);
+		print_handler('f', philo, 2);
 	}
 	else
 	{
 		pthread_mutex_lock(philo->right_fork);
-		print_handler('f', philo);
+		print_handler('f', philo, 3);
 		pthread_mutex_lock(philo->left_fork);
-		print_handler('f', philo);
+		print_handler('f', philo, 4);
 	}
-	print_handler('e', philo);
+	print_handler('e', philo, 0);
 	pthread_mutex_lock(&info->sim_lock);
 	philo->t_last_meal = get_time();
 	pthread_mutex_unlock(&info->sim_lock);
-	ft_usleep(info->t_eat);
+	ft_usleep(info->t_eat, info);
 	pthread_mutex_unlock(philo->right_fork);
 	pthread_mutex_unlock(philo->left_fork);
+	pthread_mutex_lock(&info->sim_lock);
 	philo->n_eaten++;
+	pthread_mutex_unlock(&info->sim_lock);
 	if (info->n_meals != -1 && philo->n_eaten == info->n_meals)
 		pthread_exit(NULL);
 }
 
 void	*behold(void *tmp_info)
 {
-	int		i;
 	t_info	*info;
+	int		i;
 	long	t_stamp;
+	int		full_philos;
 
 	info = (t_info *)tmp_info;
 	while (info->sim_stop != 1)
 	{
 		i = 0;
+		full_philos = 0;
 		while (i < info->n_philo)
 		{
 			pthread_mutex_lock(&info->sim_lock);
 			t_stamp = get_time() - info->philos[i].t_last_meal;
-			pthread_mutex_unlock(&info->sim_lock);
+			if (info->philos[i].n_eaten >= info->n_meals)
+				full_philos++;
 			if (t_stamp >= info->t_die && info->philos[i].n_eaten != info->n_meals)
 			{
-				pthread_mutex_lock(&info->sim_lock);
 				info->sim_stop = 1;
 				pthread_mutex_unlock(&info->sim_lock);
-				return (print_handler('d', &info->philos[i]), NULL);
+				return (print_handler('d', &info->philos[i], 0), NULL);
 			}
+			pthread_mutex_unlock(&info->sim_lock);
 			i++;
 		}
+		if (full_philos == info->n_philo)
+			return (NULL);
 		usleep(500);
 	}
 	return (NULL);

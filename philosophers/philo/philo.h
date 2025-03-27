@@ -63,12 +63,12 @@ void	start_slaves(t_info *info, t_philo *philos);
 void	*routine(void *tmp_ph);
 void	eat(t_philo *philo, t_info *info);
 void	*behold(void *tmp_info);
-void	print_handler(char msg, t_philo *philo);
+void	print_handler(char msg, t_philo *philo, int fork);
 
 
 // helper stuff
 long	get_time(void);
-void	ft_usleep(long time);
+void	ft_usleep(long time, t_info *info);
 void	cleanup(t_info *info, t_philo *philos, pthread_t *old_one);
 
 #endif

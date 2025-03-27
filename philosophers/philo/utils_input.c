@@ -20,13 +20,22 @@ long	get_time(void)
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-void	ft_usleep(long time)
+void	ft_usleep(long time, t_info *info)
 {
 	long	start;
 
 	start = get_time();
 	while (get_time() - start < time)
+	{
+		pthread_mutex_lock(&info->sim_lock);
+		if (info->sim_stop)
+		{
+			pthread_mutex_unlock(&info->sim_lock);
+			break;
+		}
+		pthread_mutex_unlock(&info->sim_lock);
 		usleep(500);
+	}
 }
 
 static int	err_msg(void)

@@ -71,10 +71,36 @@ void	start_slaves(t_info *info, t_philo *philos)
 	}
 }
 
-void	print_handler(char msg, t_philo *philo)
+void	check_fork(char msg, t_philo *philo, int fork)
+{
+	pthread_mutex_lock(&philo->info->sim_lock);
+	if (philo->info->sim_stop == 1 && msg != 'd')
+	{
+		pthread_mutex_unlock(&philo->info->sim_lock);
+		if (fork == 1)
+			pthread_mutex_unlock(philo->left_fork);
+		else if (fork == 2)
+		{
+			pthread_mutex_unlock(philo->left_fork);
+			pthread_mutex_unlock(philo->right_fork);
+		}
+		else if (fork == 3)
+			pthread_mutex_unlock(philo->right_fork);
+		else if (fork == 4)
+		{
+			pthread_mutex_unlock(philo->right_fork);
+			pthread_mutex_unlock(philo->left_fork);
+		}
+		pthread_exit(NULL);
+	}
+	pthread_mutex_unlock(&philo->info->sim_lock);
+}
+
+void	print_handler(char msg, t_philo *philo, int fork)
 {
 	long	t_stamp;
 
+	check_fork(msg, philo, fork);
 	t_stamp = get_time() - philo->info->start_time;
 	pthread_mutex_lock(&philo->info->write_lock);
 	if (msg == 'f')
