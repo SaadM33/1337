@@ -12,6 +12,11 @@
 
 #include "philo.h"
 
+void	one_philo()
+{
+	
+}
+
 void	*routine(void *tmp_ph)
 {
 	t_philo	*philo;
@@ -19,6 +24,9 @@ void	*routine(void *tmp_ph)
 
 	philo = (t_philo *)tmp_ph;
 	info = (t_info *)philo->info;
+	// Small delay for even philosophers to let odds eat first
+	if (philo->id % 2 == 0)
+		usleep(10000);
 	while (1)
 	{
 		eat(philo, info);
@@ -31,6 +39,8 @@ void	*routine(void *tmp_ph)
 
 void	eat(t_philo *philo, t_info *info)
 {
+	if (info->n_meals != -1 && philo->n_eaten >= info->n_meals)
+		pthread_exit(NULL);
 	if (philo->id != info->n_philo)
 	{
 		pthread_mutex_lock(philo->left_fork);
@@ -45,7 +55,7 @@ void	eat(t_philo *philo, t_info *info)
 		pthread_mutex_lock(philo->left_fork);
 		print_handler('f', philo, 4);
 	}
-	print_handler('e', philo, 0);
+	print_handler('e', philo, 4);
 	pthread_mutex_lock(&info->sim_lock);
 	philo->t_last_meal = get_time();
 	pthread_mutex_unlock(&info->sim_lock);
@@ -55,7 +65,7 @@ void	eat(t_philo *philo, t_info *info)
 	pthread_mutex_lock(&info->sim_lock);
 	philo->n_eaten++;
 	pthread_mutex_unlock(&info->sim_lock);
-	if (info->n_meals != -1 && philo->n_eaten == info->n_meals)
+	if (info->n_meals != -1 && philo->n_eaten >= info->n_meals)
 		pthread_exit(NULL);
 }
 
