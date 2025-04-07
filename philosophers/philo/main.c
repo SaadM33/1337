@@ -5,17 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 13:39:16 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/03/22 00:34:57 by sel-maaq         ###   ########.fr       */
+/*   Created: 2025/04/07 18:39:00 by sel-maaq          #+#    #+#             */
+/*   Updated: 2025/04/07 22:07:10 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	one_philo()
-{
-	
-}
 
 void	*routine(void *tmp_ph)
 {
@@ -24,38 +19,51 @@ void	*routine(void *tmp_ph)
 
 	philo = (t_philo *)tmp_ph;
 	info = (t_info *)philo->info;
-	// Small delay for even philosophers to let odds eat first
-	if (philo->id % 2 == 0)
-		usleep(10000);
+	if (info->n_philo == 1)
+	{
+		print_handler('f', philo, 0);
+		return (NULL);
+	}
+	if (philo->id % 2 != 0)
+		usleep(20000);
 	while (1)
 	{
-		eat(philo, info);
-		print_handler('s', philo, 0);
+		if (!eat(philo, info))
+			return (NULL);
+		if (!print_handler('s', philo, 0))
+			return (NULL);
 		ft_usleep(info->t_sleep, info);
-		print_handler('t', philo, 0);
+		if (!print_handler('t', philo, 0))
+			return (NULL);
+		usleep(500);
 	}
 	return (NULL);
 }
 
-void	eat(t_philo *philo, t_info *info)
+int	eat(t_philo *philo, t_info *info)
 {
 	if (info->n_meals != -1 && philo->n_eaten >= info->n_meals)
-		pthread_exit(NULL);
+		return (0);
 	if (philo->id != info->n_philo)
 	{
 		pthread_mutex_lock(philo->left_fork);
-		print_handler('f', philo, 1);
+		if (!print_handler('f', philo, 1))
+			return (0);
 		pthread_mutex_lock(philo->right_fork);
-		print_handler('f', philo, 2);
+		if (!print_handler('f', philo, 2))
+			return (0);
 	}
 	else
 	{
 		pthread_mutex_lock(philo->right_fork);
-		print_handler('f', philo, 3);
+		if (!print_handler('f', philo, 3))
+			return (0);
 		pthread_mutex_lock(philo->left_fork);
-		print_handler('f', philo, 4);
+		if (!print_handler('f', philo, 4))
+			return (0);
 	}
-	print_handler('e', philo, 4);
+	if (!print_handler('e', philo, 4))
+		return (0);
 	pthread_mutex_lock(&info->sim_lock);
 	philo->t_last_meal = get_time();
 	pthread_mutex_unlock(&info->sim_lock);
@@ -66,7 +74,8 @@ void	eat(t_philo *philo, t_info *info)
 	philo->n_eaten++;
 	pthread_mutex_unlock(&info->sim_lock);
 	if (info->n_meals != -1 && philo->n_eaten >= info->n_meals)
-		pthread_exit(NULL);
+		return (0);
+	return (1);
 }
 
 void	*behold(void *tmp_info)
@@ -85,9 +94,10 @@ void	*behold(void *tmp_info)
 		{
 			pthread_mutex_lock(&info->sim_lock);
 			t_stamp = get_time() - info->philos[i].t_last_meal;
-			if (info->philos[i].n_eaten >= info->n_meals)
+			if (info->philos[i].n_eaten == info->n_meals)
 				full_philos++;
-			if (t_stamp >= info->t_die && info->philos[i].n_eaten != info->n_meals)
+			if (t_stamp >= info->t_die && info->philos[i].n_eaten != \
+				info->n_meals)
 			{
 				info->sim_stop = 1;
 				pthread_mutex_unlock(&info->sim_lock);
@@ -111,14 +121,32 @@ int	main(int ac, char **av)
 
 	if (ac < 5 || ac > 6)
 		return (printf(STR_USAGE), 1);
-	validate_input(av);
-	init_info(av, &info);
-	init_philo(&info, &philos);
+	if (!validate_input(av))
+		return (1);
+	if (!init_info(av, &info))
+		return (1);
+	if (!init_philo(&info, &philos))
+		return (1);
 	info.start_time = get_time();
 	start_slaves(&info, philos);
 	pthread_create(&watcher, NULL, behold, &info);
 	cleanup(&info, philos, &watcher);
-	// system("paplay ~/1337/so_long/assets/dry-fart.wav");
 	return (0);
 }
 
+void	cleanup(t_info *info, t_philo *philos, pthread_t *watcher)
+{
+	int	i;
+
+	i = 0;
+	while (i < info->n_philo)
+		pthread_join(philos[i++].thread, NULL);
+	pthread_join(*watcher, NULL);
+	i = 0;
+	while (i < info->n_philo)
+		pthread_mutex_destroy(&info->forks[i++]);
+	pthread_mutex_destroy(&info->write_lock);
+	pthread_mutex_destroy(&info->sim_lock);
+	free(info->forks);
+	free(philos);
+}

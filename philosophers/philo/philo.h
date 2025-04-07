@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/07 10:00:49 by sel-maaq          #+#    #+#             */
+/*   Updated: 2025/04/07 15:02:03 by sel-maaq         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -48,23 +60,21 @@ typedef struct s_philo
 	t_info			*info;
 }	t_philo;
 
-
 // INPUT HANDLING
 int		validate_input(char **av);
 int		ft_isdigit(int c);
 int		ft_atoi(const char *str);
 
 // initialisation
-void	init_info(char **av, t_info *info);
-void	init_philo(t_info *info, t_philo **philos);
+int		init_info(char **av, t_info *info);
+int		init_philo(t_info *info, t_philo **philos);
 void	start_slaves(t_info *info, t_philo *philos);
 
 // main functions
 void	*routine(void *tmp_ph);
-void	eat(t_philo *philo, t_info *info);
+int		eat(t_philo *philo, t_info *info);
 void	*behold(void *tmp_info);
-void	print_handler(char msg, t_philo *philo, int fork);
-
+int		print_handler(char msg, t_philo *philo, int fork);
 
 // helper stuff
 long	get_time(void);
