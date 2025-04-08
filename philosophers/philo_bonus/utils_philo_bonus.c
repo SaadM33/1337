@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_philo.c                                      :+:      :+:    :+:   */
+/*   utils_philo_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 20:58:02 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/04/07 15:02:23 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/04/08 20:57:56 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,27 @@ int	init_philo(t_info *info, t_philo **philos)
 
 void	start_slaves(t_info *info, t_philo *philos)
 {
-	int	i;
+	int		i;
+	pid_t	pid;
 
 	i = 0;
 	while (i < info->n_philo)
 	{
-		pthread_create(&philos[i].thread, NULL, routine, &philos[i]);
+		pid = fork();
+		if (pid == 0)
+		{
+			routine(&philos[i]);
+			exit(0);
+		}
+		else if (pid > 0)
+		{
+			philos[i].pid = pid;
+		}
+		else
+		{
+			printf("fork error\n");
+			exit(1);
+		}
 		i++;
 	}
 }
