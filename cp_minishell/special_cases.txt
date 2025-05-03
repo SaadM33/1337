@@ -1,0 +1,2 @@
+ls {|| or | |}   > out1  ->  out1 not created , syntax error near unexpected token `|'
+
