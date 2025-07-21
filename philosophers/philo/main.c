@@ -99,7 +99,8 @@ int	main(int ac, char **av)
 	if (!init_philo(&info, &philos))
 		return (1);
 	info.start_time = get_time();
-	start_slaves(&info, philos);
+	if (!start_slaves(&info, philos))
+		return (pure_clean_up(&info, philos), 1);
 	pthread_create(&watcher, NULL, behold, &info);
 	cleanup(&info, philos, &watcher);
 	return (0);

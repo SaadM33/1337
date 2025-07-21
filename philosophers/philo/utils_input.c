@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 20:57:52 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/04/08 17:25:43 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/07/04 22:16:02 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,31 @@ int	validate_input(char **av)
 	while (av[i])
 	{
 		j = 0;
-		if (av[i][0] == '\0' || (av[i][1] != '0' && av[i][0] == '-'))
+		if (av[i][0] == '\0' || (av[i][0] == '-' && av[i][1] != '0'))
 			return (write(2, "Error! invalid arguments\n", 26), 0);
 		if (av[i][0] == '+')
 			j++;
 		while (av[i][j])
 		{
-			if (!ft_isdigit(av[i][j]) && av[i][1] != '0')
+			if (!ft_isdigit(av[i][j]))
 				return (write(2, "Error! invalid arguments\n", 26), 0);
 			j++;
 		}
 		i++;
 	}
 	return (1);
+}
+
+void	pure_clean_up(t_info *info, t_philo *philos)
+{
+	int	i;
+
+	i = 0;
+	while (i < info->n_philo)
+		pthread_mutex_destroy(&info->forks[i++]);
+	pthread_mutex_destroy(&info->write_lock);
+	pthread_mutex_destroy(&info->sim_lock);
+	free(info->forks);
+	free(philos);
+	write(2, "Error! Failed to create thread\n", 31);
 }

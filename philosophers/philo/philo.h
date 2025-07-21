@@ -68,7 +68,7 @@ int		ft_atoi(const char *str);
 // initialisation
 int		init_info(char **av, t_info *info);
 int		init_philo(t_info *info, t_philo **philos);
-void	start_slaves(t_info *info, t_philo *philos);
+int		start_slaves(t_info *info, t_philo *philos);
 
 // main functions
 void	*routine(void *tmp_ph);
@@ -81,6 +81,8 @@ int		print_handler(char msg, t_philo *philo, int fork);
 // helper stuff
 long	get_time(void);
 void	ft_usleep(long time, t_info *info);
+
+void	pure_clean_up(t_info *info, t_philo *philos);
 void	cleanup(t_info *info, t_philo *philos, pthread_t *old_one);
 
 #endif

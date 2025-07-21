@@ -61,16 +61,18 @@ int	init_philo(t_info *info, t_philo **philos)
 	return (1);
 }
 
-void	start_slaves(t_info *info, t_philo *philos)
+int	start_slaves(t_info *info, t_philo *philos)
 {
 	int	i;
 
 	i = 0;
 	while (i < info->n_philo)
 	{
-		pthread_create(&philos[i].thread, NULL, routine, &philos[i]);
+		if (pthread_create(&philos[i].thread, NULL, routine, &philos[i]) != 0)
+			return (0);
 		i++;
 	}
+	return (1);
 }
 
 int	check_fork(char msg, t_philo *philo, int fork)
