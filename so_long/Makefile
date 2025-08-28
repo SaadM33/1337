@@ -25,7 +25,7 @@ clearscr:
 
 
 $(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(X11FLAGS) $(OBJS) $(LIBFT) /usr/include/minilibx-linux/libmlx.a -o $@
+	$(CC) $(CFLAGS) $(X11FLAGS) $(OBJS) $(LIBFT) minilibx-linux/libmlx.a -o $@
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -46,6 +46,6 @@ re: fclean all
 bonus: $(BONUS)
 
 $(BONUS): $(OBJS_BONUS) $(LIBFT)
-	$(CC) $(CFLAGS)$(X11FLAGS) $(OBJS_BONUS) $(LIBFT) /usr/include/minilibx-linux/libmlx.a -o $(BONUS)
+	$(CC) $(CFLAGS)$(X11FLAGS) $(OBJS_BONUS) $(LIBFT) minilibx-linux/libmlx.a -o $(BONUS)
 
 .PHONY: all clean fclean re bonus

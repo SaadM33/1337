@@ -6,7 +6,7 @@
 /*   By: sel-maaq <sel-maaq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 18:39:00 by sel-maaq          #+#    #+#             */
-/*   Updated: 2025/04/08 17:26:04 by sel-maaq         ###   ########.fr       */
+/*   Updated: 2025/08/04 11:01:35 by sel-maaq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	*routine(void *tmp_ph)
 		print_handler('f', philo, 0);
 		return (NULL);
 	}
-	if (philo->id % 2 != 0)
+	if (philo->id % 2 == 0)
 		usleep(20000);
 	while (1)
 	{
@@ -35,7 +35,7 @@ void	*routine(void *tmp_ph)
 		ft_usleep(info->t_sleep, info);
 		if (!print_handler('t', philo, 0))
 			return (NULL);
-		usleep(500);
+		usleep(20000);
 	}
 	return (NULL);
 }
