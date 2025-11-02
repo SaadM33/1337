@@ -1,7 +1,7 @@
 
 CC = c++
 CFLAGS = -g -Wall -Wextra -Werror -std=c++98
-NAME = horde
+NAME = brain
 SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
 
