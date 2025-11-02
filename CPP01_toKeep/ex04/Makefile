@@ -1,7 +1,7 @@
 
 CC = c++
 CFLAGS = -g -Wall -Wextra -Werror -std=c++98
-NAME = EldenRing
+NAME = sed
 SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
 

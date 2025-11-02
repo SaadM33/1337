@@ -12,9 +12,11 @@ class Weapon
 	
 	public:
 
-		std::string &getType(void);
+		Weapon(std::string str);
+		
+		const std::string	&getType(void) const;
 
-		void 		setType(std::string value);
+		void 				setType(std::string value);
 };
 
 #endif
