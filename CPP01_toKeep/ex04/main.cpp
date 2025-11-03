@@ -1,10 +1,18 @@
+#include <fstream>
+#include <iostream>
+using namespace std;
 
+int main() {
+    ifstream file("output.txt");
+    string line;
 
-int	main(int ac, char **av)
-{
-	
+    if (!file) {
+        cerr << "Cannot open file.\n";
+        return 1;
+    }
 
+    while (getline(file, line))
+        cout << line ;
 
-
-	return 0;
+    file.close();
 }
