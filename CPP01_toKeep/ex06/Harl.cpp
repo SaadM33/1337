@@ -22,16 +22,30 @@ void	Harl::error( void )
 
 void	Harl::complain( std::string level)
 {
-	void	(Harl::*lou3ab[4])( void ) = { &Harl::debug, &Harl::info, &Harl::warning, &Harl::error };
-	std::string	levels[] = { "DEBUG", "INFO", "WARNING", "ERROR" };
 
-	for (int i = 0; i < 4; i++)
+	if (level != "DEBUG" && level != "INFO" && level != "WARNING" && level != "ERROR")
 	{
-		if (level == levels[i])
-		{
-			(this->*lou3ab[i])();
-			return ;
-		}
+		std::cout << "wong in put" << std::endl;
+		return ;
+	}
+
+	switch (level[0])
+	{
+		case 'D':
+			debug();
+			// fallthrough
+		case 'I':
+			info();
+			// fall through
+		case 'W':
+			warning();
+			// fall through
+		case 'E':
+			error();
+			break;
+
+		default:
+			std::cout << "wong in put" << std::endl;
 	}
 	
 }
