@@ -2,13 +2,15 @@
 #ifndef FIXED_H
 #define FIXED_H
 
+#include <iostream>
+
 class	Fixed
 {
 
 	private:
 
 		int					value;
-		static const int	width = 8;
+		static const int	f_bits = 8;
 
 	public:
 
@@ -27,5 +29,7 @@ class	Fixed
 		int		toInt( void ) const;
 
 };
+
+std::ostream &operator<<( std::ostream & o, Fixed const & obj);
 
 #endif
