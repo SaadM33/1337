@@ -21,7 +21,8 @@ class Point
 
 		Point &operator=( const Point &rhs );
 
-
+		Fixed	getX( void ) const;
+		Fixed	getY( void ) const;
 
 };
 

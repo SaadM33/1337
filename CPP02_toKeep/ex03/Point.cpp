@@ -20,3 +20,17 @@ Point	&Point::operator=( const Point &rhs )
 	(void)rhs;
 	return *this;
 }
+
+Point::~Point( void )
+{
+}
+
+Fixed	Point::getX( void ) const
+{
+	return this->_x;
+}
+
+Fixed	Point::getY( void )	const
+{
+	return this->_y;
+}
