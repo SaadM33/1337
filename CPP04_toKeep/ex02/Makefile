@@ -2,7 +2,7 @@
 CC = c++
 CFLAGS = -g -Wall -Wextra -Werror -std=c++98
 NAME = abstract
-SRCS = $(wildcard *.cpp)
+SRCS = AAnimal.cpp  Brain.cpp  Cat.cpp  Dog.cpp  WrongAnimal.cpp  WrongCat.cpp  main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 %.o: %.cpp

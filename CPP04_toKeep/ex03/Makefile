@@ -1,8 +1,8 @@
 
 CC = c++
 CFLAGS = -g -Wall -Wextra -Werror -std=c++98
-NAME = brain
-SRCS = Animal.cpp Dog.cpp Cat.cpp main.cpp Brain.cpp
+NAME = interface
+SRCS = main.cpp AMateria.cpp Ice.cpp Cure.cpp Character.cpp MateriaSource.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 %.o: %.cpp
