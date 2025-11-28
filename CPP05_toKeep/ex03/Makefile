@@ -1,7 +1,7 @@
 
 CC = c++
 CFLAGS = -g -Wall -Wextra -Werror -std=c++98
-NAME = Mommy
+NAME = coffee-making
 SRCS = $(wildcard *.cpp)
 OBJS = $(SRCS:.cpp=.o)
 
