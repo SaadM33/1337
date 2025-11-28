@@ -2,7 +2,7 @@
 CC = c++
 CFLAGS = -g -Wall -Wextra -Werror -std=c++98
 NAME = maggots
-SRCS = $(wildcard *.cpp)
+SRCS = Bureaucrat.cpp Form.cpp main.cpp 
 OBJS = $(SRCS:.cpp=.o)
 
 %.o: %.cpp

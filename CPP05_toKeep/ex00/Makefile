@@ -2,7 +2,7 @@
 CC = c++
 CFLAGS = -g -Wall -Wextra -Werror -std=c++98
 NAME = Mommy
-SRCS = $(wildcard *.cpp)
+SRCS = Bureaucrat.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 %.o: %.cpp

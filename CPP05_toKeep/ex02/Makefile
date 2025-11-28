@@ -2,7 +2,7 @@
 CC = c++
 CFLAGS = -g -Wall -Wextra -Werror -std=c++98
 NAME = 28B
-SRCS = $(wildcard *.cpp)
+SRCS = Bureaucrat.cpp AForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp ShrubberyCreationForm.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 %.o: %.cpp
