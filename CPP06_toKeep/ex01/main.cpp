@@ -18,5 +18,7 @@ int	main( void )
 	std::cout << "serialized: " << reinterpret_cast<Data *>(serialized) << std::endl;
 	std::cout << "deserialized : " << deserialized << std::endl;
 
+	std::cout << "data.n: " << data.n << std::endl;
+	std::cout << "deserialized->n: " << deserialized->n << std::endl;
 	return 0;
 }
