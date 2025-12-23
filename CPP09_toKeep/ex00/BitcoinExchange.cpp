@@ -64,12 +64,12 @@ int		check_value(double value)
 int		valid_entry(std::string line)
 {
 	size_t spliter = line.find('|');
-	if (spliter == std::string::npos || line[spliter - 1] != ' ' || line[spliter + 1] != ' ')
+	if (spliter == std::string::npos || spliter == 0 || spliter == line.length() - 1)
 	{
 		std::cerr << "Error: bad input => " << line << std::endl;
 		return 0;
 	}
-	if (spliter == 0 || spliter == line.length() - 1)
+	if (line[spliter - 1] != ' ' || line[spliter + 1] != ' ')
 	{
 		std::cerr << "Error: bad input => " << line << std::endl;
 		return 0;
