@@ -29,9 +29,10 @@ std::vector<int> parse_sequence( std::string line )
 
 		result.push_back((int)num);	
 	}
+	if (result.empty())
+		throw std::logic_error("No valid numbers provided");
 	return result;
 }
-
 
 void	print_sequence( std::vector<int> &vec )
 {
@@ -66,8 +67,13 @@ int main(int ac, char **av)
 
 		print_sequence(vec);
 
-		double time_vector = sort_vector(vec);
-		double time_deque = sort_deque(deq);
+		double	start_time = get_time_u();
+		sort_vector(vec);
+		double time_vector = get_time_u() - start_time;
+		
+		start_time = get_time_u();
+		sort_deque(deq);
+		double time_deque = get_time_u() - start_time;
 
 		print_sequence(vec);
 
