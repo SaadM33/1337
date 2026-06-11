@@ -1,0 +1,6 @@
+[submodule "IRC"]
+	path = IRC
+	url = ./IRC
+[submodule "inception"]
+	path = inception
+	url = ./inception
