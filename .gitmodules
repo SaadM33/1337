@@ -1,6 +1,6 @@
 [submodule "IRC"]
 	path = IRC
-	url = ./IRC
+	url = https://github.com/SaadM33/IRC
 [submodule "inception"]
 	path = inception
-	url = ./inception
+	url = https://github.com/SaadM33/inception
